@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tuhin Ghorui | AI Engineer & Full-Stack Builder</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Personal portfolio of Tuhin Ghorui, a BCA student & AI Engineering builder based in Goa, India. Specializing in intelligent systems, full-stack development, and RyzMax progress tracker.">
+  <meta name="keywords" content="Tuhin Ghorui, Portfolio, AI Engineer, Full-Stack Developer, BCA Student, RyzMax, Goa, India, Python, JavaScript, React">
+  <meta name="author" content="Tuhin Ghorui">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tuhin-ghorui.github.io/">
+  <meta property="og:title" content="Tuhin Ghorui | AI Engineer & Full-Stack Builder">
+  <meta property="og:description" content="BCA Student building intelligent systems and custom AI assistants. Exploring full-stack dev and shipping products.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Particle Background Canvas -->
+  <canvas id="flowfield-canvas"></canvas>
+
+  <!-- Custom Cursor Overlay -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+
+  <!-- HEADER / NAVIGATION -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="#" class="logo" id="header-logo">
+        <span class="logo-accent">&lt;</span>TG<span class="logo-accent"> /&gt;</span>
+      </a>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#ryzmax" class="nav-link">RyzMax RPG</a>
+        <a href="#terminal-section" class="nav-link">Console</a>
+        <a href="#skills" class="nav-link">Stack</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link nav-btn">Let's Talk</a>
+      </nav>
+
+      <div class="header-right">
+        <div class="status-indicator">
+          <span class="pulse-dot"></span>
+          <span class="status-text">Learning Daily</span>
+        </div>
+        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="hero-eyebrow animate-fade">
+            <span class="badge-tag">BCA Student</span>
+            <span class="badge-tag">AI Engineering</span>
+            <span class="badge-tag">Goa, India 🇮🇳</span>
+          </div>
+          
+          <h1 class="hero-title">
+            <span class="title-light">TUHIN</span>
+            <span class="title-bold text-gradient glitch-text" data-text="GHORUI">GHORUI</span>
+          </h1>
+          
+          <p class="hero-subtitle">
+            Focused on building <span class="highlight-text">intelligent systems</span> with AI. Currently developing <strong>RyzMax</strong>, a gamified leveling system for real-life tracking. My ultimate goal is crafting a personal AI assistant from scratch.
+          </p>
+          
+          <div class="hero-actions">
+            <a href="#ryzmax" class="btn btn-primary">
+              <span>Explore RyzMax</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a href="#projects" class="btn btn-secondary">
+              <span>View Projects</span>
+            </a>
+          </div>
+        </div>
+        
+        <!-- IDENTITY JSON CARD -->
+        <div class="hero-card-container">
+          <div class="glass-card identity-card" id="identity-card">
+            <div class="card-header">
+              <div class="terminal-dots">
+                <span class="dot-red"></span>
+                <span class="dot-yellow"></span>
+                <span class="dot-green"></span>
+              </div>
+              <span class="card-title">identity.json</span>
+            </div>
+            <div class="card-body font-mono">
+              <div class="json-line"><span class="json-key">"name"</span>: <span class="json-val">"Tuhin Ghorui"</span>,</div>
+              <div class="json-line"><span class="json-key">"role"</span>: <span class="json-val">"CS Student & Builder"</span>,</div>
+              <div class="json-line"><span class="json-key">"degree"</span>: <span class="json-val">"BCA"</span>,</div>
+              <div class="json-line"><span class="json-key">"location"</span>: <span class="json-val">"Goa, India"</span>,</div>
+              <div class="json-line"><span class="json-key">"specialty"</span>: <span class="json-val">"AI Products & Agentic Dev"</span>,</div>
+              <div class="json-line"><span class="json-key">"status"</span>: <span class="json-val text-neon-green">"● Open for Opportunities"</span>,</div>
+              <div class="json-line"><span class="json-key">"deep_work"</span>: <span class="json-val">"4 hours/day"</span>,</div>
+              <div class="json-line"><span class="json-key">"daily_quest"</span>: <span class="json-val text-neon-cyan">"Active"</span></div>
+            </div>
+            <div class="card-glow"></div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-indicator-container">
+        <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+          <span class="mouse-wheel"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">01 // INTRODUCTION</span>
+          <h2 class="section-title">The Mind Behind The <em>Code</em></h2>
+        </div>
+        
+        <div class="about-grid">
+          <div class="about-main-content">
+            <p class="paragraph-lead">
+              I apply theoretical computer science directly to real-world software. I believe building in public and shipping early are the absolute best accelerators for growth.
+            </p>
+            <p>
+              As a <strong>BCA student</strong>, I spend my time exploring full-stack engineering and bridging the gap between web systems and artificial intelligence. Rather than relying on simple wrappers, I'm diving into context window optimization, local agent architectures, and responsive system design.
+            </p>
+            <p>
+              My philosophy centers around <span class="text-neon-cyan">deliberate practice</span>. Daily code, iterative deployments, and learning in public. My current primary build is <strong>RyzMax</strong>, which implements customizable quest generation and habit loops powered by local AI logic.
+            </p>
+          </div>
+          
+          <div class="about-stats-grid">
+            <div class="stat-box glass-card">
+              <div class="stat-value text-neon-cyan" id="stat-projects">3+</div>
+              <div class="stat-label">Active Builds</div>
+            </div>
+            <div class="stat-box glass-card">
+              <div class="stat-value text-neon-purple" id="stat-degree">BCA</div>
+              <div class="stat-label">Degree Focus</div>
+            </div>
+            <div class="stat-box glass-card">
+              <div class="stat-value text-neon-green" id="stat-interest">AI</div>
+              <div class="stat-label">Core Engine</div>
+            </div>
+            <div class="stat-box glass-card">
+              <div class="stat-value text-gradient" id="stat-streak">365+</div>
+              <div class="stat-label">Streak Days</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RYZMAX LEVEL UP SIMULATOR (GAMIFICATION WIDGET) -->
+    <section class="ryzmax-section" id="ryzmax">
+      <div class="container">
+        <div class="section-header text-center">
+          <span class="section-tag">02 // GAME ENGINE</span>
+          <h2 class="section-title text-center">RyzMax <em>Progression Dashboard</em></h2>
+          <p class="section-subtitle">
+            An interactive simulator showcasing the concept of my primary project: gamifying life progression using AI-generated quests and stat levels. Try completing Tuhin's daily quests to help him Level Up!
+          </p>
+        </div>
+
+        <div class="ryzmax-dashboard glass-card">
+          <!-- Stats Panel -->
+          <div class="ryzmax-stats-panel">
+            <div class="r-profile">
+              <div class="r-avatar">
+                <div class="avatar-glow"></div>
+                <span class="avatar-text">TG</span>
+              </div>
+              <div class="r-identity">
+                <h3 class="r-name">Tuhin Ghorui</h3>
+                <span class="r-class font-mono">Level <span id="ryzmax-level">12</span> AI Specialist</span>
+              </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="r-xp-container">
+              <div class="r-xp-header font-mono">
+                <span>XP PROGRESS</span>
+                <span id="ryzmax-xp-text">1850 / 3000 XP</span>
+              </div>
+              <div class="r-xp-bar-bg">
+                <div class="r-xp-bar-fill" id="ryzmax-xp-fill" style="width: 61.6%"></div>
+              </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="r-attributes font-mono">
+              <div class="r-attribute">
+                <span class="attr-label">INT (Intelligence)</span>
+                <div class="attr-bar">
+                  <div class="attr-fill bg-cyan" id="attr-int" style="width: 82%"></div>
+                </div>
+                <span class="attr-val" id="attr-int-val">82</span>
+              </div>
+              <div class="r-attribute">
+                <span class="attr-label">FSD (Full-Stack Skill)</span>
+                <div class="attr-bar">
+                  <div class="attr-fill bg-purple" id="attr-fsd" style="width: 74%"></div>
+                </div>
+                <span class="attr-val" id="attr-fsd-val">74</span>
+              </div>
+              <div class="r-attribute">
+                <span class="attr-label">AGI (Deployment Speed)</span>
+                <div class="attr-bar">
+                  <div class="attr-fill bg-green" id="attr-agi" style="width: 68%"></div>
+                </div>
+                <span class="attr-val" id="attr-agi-val">68</span>
+              </div>
+              <div class="r-attribute">
+                <span class="attr-label">LC (Consistent Streak)</span>
+                <div class="attr-bar">
+                  <div class="attr-fill bg-red" id="attr-lc" style="width: 90%"></div>
+                </div>
+                <span class="attr-val" id="attr-lc-val">90</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quest Panel -->
+          <div class="ryzmax-quests-panel">
+            <div class="panel-header font-mono">
+              <span>AVAILABLE QUESTS (CLICK TO COMPLETE)</span>
+              <button class="btn-text" id="reset-quests-btn">Refresh</button>
+            </div>
+            
+            <div class="quests-list" id="quests-list">
+              <!-- Quest 1 -->
+              <div class="quest-card" data-xp="450" data-stat="int">
+                <div class="quest-status-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
+                </div>
+                <div class="quest-details">
+                  <span class="quest-reward font-mono">+450 XP / +2 INT</span>
+                  <h4 class="quest-title">Implement Agentic Prompt Loops</h4>
+                  <p class="quest-desc">Optimize feedback cycles in local assistant code models.</p>
+                </div>
+                <button class="btn-quest-complete font-mono">Complete</button>
+              </div>
+
+              <!-- Quest 2 -->
+              <div class="quest-card" data-xp="350" data-stat="fsd">
+                <div class="quest-status-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
+                </div>
+                <div class="quest-details">
+                  <span class="quest-reward font-mono">+350 XP / +3 FSD</span>
+                  <h4 class="quest-title">Refactor Express Async Middleware</h4>
+                  <p class="quest-desc">Build cleaner error catching filters for project routes.</p>
+                </div>
+                <button class="btn-quest-complete font-mono">Complete</button>
+              </div>
+
+              <!-- Quest 3 -->
+              <div class="quest-card" data-xp="500" data-stat="agi">
+                <div class="quest-status-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
+                </div>
+                <div class="quest-details">
+                  <span class="quest-reward font-mono">+500 XP / +4 AGI</span>
+                  <h4 class="quest-title">Optimize Flowfield Canvas Drawing</h4>
+                  <p class="quest-desc">Leverage requestAnimationFrame vector math for 60fps.</p>
+                </div>
+                <button class="btn-quest-complete font-mono">Complete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE TERMINAL SECTION -->
+    <section class="terminal-section" id="terminal-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">03 // SHELL INTERFACE</span>
+          <h2 class="section-title">Developers' <em>CLI Console</em></h2>
+          <p class="section-subtitle">A fully responsive command-line interface. Type commands directly to audit Tuhin's core systems.</p>
+        </div>
+
+        <div class="terminal-container glass-card" id="terminal-container">
+          <div class="terminal-top">
+            <div class="terminal-dots">
+              <span class="dot-red"></span>
+              <span class="dot-yellow"></span>
+              <span class="dot-green"></span>
+            </div>
+            <div class="terminal-tab font-mono">guest@tuhin-node:~</div>
+            <div class="terminal-action-icons">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"></line></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </div>
+          </div>
+          
+          <div class="terminal-body font-mono" id="terminal-body">
+            <div class="terminal-welcome">
+              <p>Tuhin Ghorui Core Console System v2.6.5</p>
+              <p>Type <span class="text-neon-cyan">help</span> to view all available commands.</p>
+              <p>&nbsp;</p>
+            </div>
+            
+            <div class="terminal-history" id="terminal-history">
+              <!-- Logs print here -->
+            </div>
+            
+            <div class="terminal-input-row">
+              <span class="terminal-prompt">guest@tuhin-node:~$</span>
+              <input type="text" class="terminal-input" id="terminal-input" autocomplete="off" autofocus spellcheck="false" placeholder="type 'help'...">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STACK / SKILLS SECTION -->
+    <section class="skills-section" id="skills">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">04 // CAPABILITIES</span>
+          <h2 class="section-title">Technical <em>Stack</em></h2>
+        </div>
+
+        <div class="skills-wrapper">
+          <!-- comfortable -->
+          <div class="skills-group">
+            <h3 class="group-title font-mono"><span class="title-bullet text-neon-green">&lt;&gt;</span> Comfort Zone</h3>
+            <div class="skills-grid">
+              <div class="skill-card glass-card">
+                <div class="skill-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                </div>
+                <h4 class="skill-name">Frontend Basics</h4>
+                <p class="skill-desc">HTML5, CSS3, ES6 JavaScript</p>
+                <div class="skill-level font-mono">Expert</div>
+              </div>
+              <div class="skill-card glass-card">
+                <div class="skill-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2.5 3.19-2.5 5.5h20c0-2.31-1-4.24-2.5-5.5"></path><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"></path></svg>
+                </div>
+                <h4 class="skill-name">Languages</h4>
+                <p class="skill-desc">Python scripting, JavaScript logic</p>
+                <div class="skill-level font-mono">Advanced</div>
+              </div>
+              <div class="skill-card glass-card">
+                <div class="skill-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </div>
+                <h4 class="skill-name">Version Control</h4>
+                <p class="skill-desc">Git workflow, GitHub repositories</p>
+                <div class="skill-level font-mono">Expert</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- active learning -->
+          <div class="skills-group">
+            <h3 class="group-title font-mono"><span class="title-bullet text-neon-cyan">/*</span> Active Research</h3>
+            <div class="skills-grid">
+              <div class="skill-card glass-card">
+                <div class="skill-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+                </div>
+                <h4 class="skill-name">Backend</h4>
+                <p class="skill-desc">Node.js server-side, Express servers</p>
+                <div class="skill-level font-mono text-neon-cyan">Learning</div>
+              </div>
+              <div class="skill-card glass-card">
+                <div class="skill-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+                </div>
+                <h4 class="skill-name">Frameworks</h4>
+                <p class="skill-desc">React.js, React Native app structures</p>
+                <div class="skill-level font-mono text-neon-cyan">Learning</div>
+              </div>
+              <div class="skill-card glass-card">
+                <div class="skill-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72"></path><path d="M2 12h20"></path></svg>
+                </div>
+                <h4 class="skill-name">AI & LLMs</h4>
+                <p class="skill-desc">OpenAI APIs, agent context loops</p>
+                <div class="skill-level font-mono text-neon-cyan">Active</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- exploring -->
+          <div class="skills-group">
+            <h3 class="group-title font-mono"><span class="title-bullet text-neon-purple">//</span> Architecture & Tools</h3>
+            <div class="skills-grid">
+              <div class="skill-card glass-card">
+                <div class="skill-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
+                </div>
+                <h4 class="skill-name">Databases</h4>
+                <p class="skill-desc">MongoDB clusters, SQL (PostgreSQL)</p>
+                <div class="skill-level font-mono text-neon-purple">Exploring</div>
+              </div>
+              <div class="skill-card glass-card">
+                <div class="skill-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                </div>
+                <h4 class="skill-name">Design & UX</h4>
+                <p class="skill-desc">Figma prototyping, layout styling</p>
+                <div class="skill-level font-mono text-neon-purple">Exploring</div>
+              </div>
+              <div class="skill-card glass-card">
+                <div class="skill-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="18" r="3"></circle><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"></line></svg>
+                </div>
+                <h4 class="skill-name">System Design</h4>
+                <p class="skill-desc">RESTful routing, system structures</p>
+                <div class="skill-level font-mono text-neon-purple">Basics</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section class="projects-section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">05 // BUILDS</span>
+          <h2 class="section-title">Projects in <em>Public</em></h2>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card glass-card" id="project-ryzmax">
+            <div class="project-header">
+              <span class="project-number font-mono">01</span>
+              <div class="project-badge font-mono">
+                <span class="pulse-dot-green"></span>
+                ACTIVE PIPELINE
+              </div>
+            </div>
+            
+            <h3 class="project-title">RyzMax: Gamified Life Engine</h3>
+            <p class="project-description">
+              An AI-powered real-life leveling dashboard. Track daily habits, earn XP dynamically through task completion, and visually monitor attribute points. Uses structured prompt loops to generate custom quests.
+            </p>
+            
+            <div class="project-status font-mono">
+              <div class="status-step"><span class="step-dot active"></span> UI Layout: Done</div>
+              <div class="status-step"><span class="step-dot active"></span> Backend Node: In-Progress</div>
+              <div class="status-step"><span class="step-dot"></span> AI Agent Integration: Planned</div>
+            </div>
+
+            <div class="project-tech font-mono">
+              <span>Python</span>
+              <span>Node.js</span>
+              <span>MongoDB</span>
+              <span>OpenAI API</span>
+              <span>React</span>
+            </div>
+            
+            <div class="project-footer">
+              <a href="#" class="project-link font-mono">
+                <span>View Source</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="#ryzmax" class="project-link font-mono">
+                <span>Live Simulator</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+            <div class="card-glow"></div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card glass-card" id="project-assistant">
+            <div class="project-header">
+              <span class="project-number font-mono">02</span>
+              <div class="project-badge font-mono">
+                <span class="pulse-dot-cyan"></span>
+                PROTOTYPING
+              </div>
+            </div>
+            
+            <h3 class="project-title">Personal AI Assistant</h3>
+            <p class="project-description">
+              Custom agent architecture built from scratch. Exploring persistent memory models, API task routers, and file utilities. The final scope targets a highly contextual assistant capable of deep code analysis.
+            </p>
+            
+            <div class="project-status font-mono">
+              <div class="status-step"><span class="step-dot active"></span> Research: Done</div>
+              <div class="status-step"><span class="step-dot active"></span> Local Node Engine: In-Progress</div>
+              <div class="status-step"><span class="step-dot"></span> Full Deployment: Planned</div>
+            </div>
+
+            <div class="project-tech font-mono">
+              <span>Python</span>
+              <span>LLM Orchestration</span>
+              <span>Memory Systems</span>
+              <span>CLI Engine</span>
+            </div>
+            
+            <div class="project-footer">
+              <a href="#" class="project-link font-mono">
+                <span>View Repository</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="#" class="project-link font-mono">
+                <span>API Docs</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+            <div class="card-glow"></div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card glass-card" id="project-experiments">
+            <div class="project-header">
+              <span class="project-number font-mono">03</span>
+              <div class="project-badge font-mono">
+                <span class="pulse-dot-purple"></span>
+                CONTINUOUS BUILD
+              </div>
+            </div>
+            
+            <h3 class="project-title">Web Projects & Utilities</h3>
+            <p class="project-description">
+              A repository of frontend challenges, utility nodes, and full-stack experiments. Built to audit layout design, database connections, express middleware, and canvas animation frames.
+            </p>
+            
+            <div class="project-status font-mono">
+              <div class="status-step"><span class="step-dot active"></span> React Router Hooks: Done</div>
+              <div class="status-step"><span class="step-dot active"></span> Database Pipelines: Done</div>
+              <div class="status-step"><span class="step-dot active"></span> CSS Flex & Grid Audit: Done</div>
+            </div>
+
+            <div class="project-tech font-mono">
+              <span>React</span>
+              <span>Node.js</span>
+              <span>Express</span>
+              <span>PostgreSQL</span>
+              <span>CSS Modules</span>
+            </div>
+            
+            <div class="project-footer">
+              <a href="#" class="project-link font-mono">
+                <span>Explore Repos</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+            </div>
+            <div class="card-glow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEARNING ROADMAP SECTION -->
+    <section class="learning-section" id="learning">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">06 // EVOLUTION</span>
+          <h2 class="section-title">Evolutionary <em>Roadmap</em></h2>
+          <p class="section-subtitle">Deliberate skill compounding scheduled for the calendar year.</p>
+        </div>
+
+        <div class="roadmap-timeline">
+          <!-- Item 1 -->
+          <div class="roadmap-item glass-card">
+            <div class="roadmap-phase font-mono text-neon-cyan">Q1 2026 // COMPLETED</div>
+            <h3 class="roadmap-title">AI Engineering Foundations</h3>
+            <ul class="roadmap-details font-mono">
+              <li>LLM Concepts & Temperature Parameters</li>
+              <li>OpenAI & Anthropic API Architectures</li>
+              <li>System Prompt Optimization & Few-Shot Templates</li>
+            </ul>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="roadmap-item glass-card active">
+            <div class="roadmap-phase font-mono text-neon-green">Q1 - Q2 2026 // IN RUNTIME</div>
+            <h3 class="roadmap-title">Full-Stack Development</h3>
+            <ul class="roadmap-details font-mono">
+              <li>React Hooks & Virtual DOM Routing</li>
+              <li>Node.js Thread Pooling & Express Middleware</li>
+              <li>Relational Schema normalization in PostgreSQL</li>
+            </ul>
+            <div class="card-glow"></div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="roadmap-item glass-card">
+            <div class="roadmap-phase font-mono text-neon-purple">Q2 - Q3 2026 // EN ROUTE</div>
+            <h3 class="roadmap-title">Building AI Products</h3>
+            <ul class="roadmap-details font-mono">
+              <li>Distributed Vector Embeddings (pgvector)</li>
+              <li>Local Server Containerization (Docker nodes)</li>
+              <li>Structured LLM response schemas for apps</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUILDING IN PUBLIC (GITHUB STATS) -->
+    <section class="building-section" id="building">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">07 // TRANSPARENCY</span>
+          <h2 class="section-title">Building in <em>Public</em></h2>
+          <p class="section-subtitle">Real-time statistics fetched from Tuhin's active development cycles.</p>
+        </div>
+
+        <div class="building-grid">
+          <div class="building-text">
+            <p class="paragraph-lead">
+              I share my repository actions publically. No filters, no hidden drafts—just active loops, bugs, and consistent refactors.
+            </p>
+            <p>
+              By pushing daily commits and documenting systems in public, I hold myself accountable to the standard of elite developers. My repos are open to inspection, pull requests, and forks.
+            </p>
+            <a href="https://github.com/tuhin-ghorui" target="_blank" class="btn btn-secondary flex-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              <span>Explore GitHub Node</span>
+            </a>
+          </div>
+
+          <div class="building-stats-grid">
+            <div class="b-stat-card glass-card">
+              <div class="b-stat-num text-neon-cyan">50+</div>
+              <div class="b-stat-label font-mono">Monthly Commits</div>
+            </div>
+            <div class="b-stat-card glass-card">
+              <div class="b-stat-num text-neon-green">12+</div>
+              <div class="b-stat-label font-mono">Active Repositories</div>
+            </div>
+            <div class="b-stat-card glass-card">
+              <div class="b-stat-num text-neon-purple">200+</div>
+              <div class="b-stat-label font-mono">Total Contributions</div>
+            </div>
+            <div class="b-stat-card glass-card">
+              <div class="b-stat-num text-gradient">Daily</div>
+              <div class="b-stat-label font-mono">Coding Streak</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact-section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">08 // TRANSMISSION</span>
+          <h2 class="section-title">Open Node <em>Connection</em></h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Let's build something that matters.</h3>
+            <p>
+              I am open to engineering collaborations, open-source projects, and technical internships. If you are building robust products or looking for a builder who works with focus—let's communicate.
+            </p>
+            
+            <div class="contact-methods">
+              <a href="mailto:tuhinghorui553@gmail.com" class="contact-method-card glass-card">
+                <div class="cm-icon bg-cyan-dim">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                </div>
+                <div class="cm-details">
+                  <span class="cm-label font-mono">DIRECT MAIL</span>
+                  <span class="cm-value">tuhinghorui553@gmail.com</span>
+                </div>
+              </a>
+
+              <a href="https://github.com/tuhin-ghorui" target="_blank" class="contact-method-card glass-card">
+                <div class="cm-icon bg-purple-dim">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                </div>
+                <div class="cm-details">
+                  <span class="cm-label font-mono">GITHUB PROFILE</span>
+                  <span class="cm-value">github.com/tuhin-ghorui</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-container glass-card">
+            <form class="contact-form" id="portfolio-contact-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contact-name" class="font-mono">IDENT NAME</label>
+                  <input type="text" id="contact-name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                  <label for="contact-email" class="font-mono">IDENT MAIL</label>
+                  <input type="email" id="contact-email" placeholder="john@domain.com" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contact-message" class="font-mono">TRANSMISSION CONTENT</label>
+                <textarea id="contact-message" placeholder="Hi Tuhin, I want to talk about..." required></textarea>
+              </div>
+              
+              <button type="submit" class="btn btn-primary btn-block" id="form-submit-btn">
+                <span>DISPATCH TRANSMISSION</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </form>
+            <div class="form-success-overlay" id="form-success-overlay">
+              <div class="success-content">
+                <svg xmlns="http://www.w3.org/2000/svg" class="success-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <h3>TRANSMISSION DISPATCHED</h3>
+                <p class="font-mono">STATUS: SUCCESS [200 OK]</p>
+                <p>Tuhin's node has logged your message. He will reply shortly.</p>
+                <button class="btn btn-secondary" id="form-success-close">New Message</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <div class="container footer-container">
+      <div class="footer-left">
+        <p class="font-mono">© 2026 Tuhin Ghorui. Engineered in Goa, India.</p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-status font-mono">
+          <span class="status-node-dot"></span>
+          <span>NODE ONLINE // PORT: 8080</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FLOATING AI ASSISTANT CHATBOT -->
+  <div class="chatbot-wrapper" id="chatbot-wrapper">
+    <!-- Chat Toggle Bubble -->
+    <button class="chatbot-trigger" id="chatbot-trigger" aria-label="Toggle AI Assistant Chat">
+      <span class="trigger-glow"></span>
+      <svg class="chat-icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      <svg class="chat-icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+
+    <!-- Chat Window -->
+    <div class="chatbot-window glass-card" id="chatbot-window">
+      <div class="chatbot-header">
+        <div class="chatbot-info">
+          <div class="chatbot-avatar">
+            <span class="chatbot-avatar-dot"></span>
+            AI
+          </div>
+          <div>
+            <h4>TG-Assistant</h4>
+            <span class="chatbot-status font-mono">Active Agent v1.0</span>
+          </div>
+        </div>
+        <button class="chatbot-close-btn" id="chatbot-close-btn" aria-label="Close Chat">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <div class="chatbot-messages" id="chatbot-messages">
+        <div class="chat-message bot">
+          <div class="message-content">
+            <p>Welcome! I'm Tuhin's mock AI Assistant. Ask me anything about Tuhin's projects, technical skills, or how to contact him.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick prompts -->
+      <div class="chatbot-suggestions" id="chatbot-suggestions">
+        <button class="suggest-btn" data-question="Who is Tuhin?">Who is Tuhin?</button>
+        <button class="suggest-btn" data-question="What is RyzMax?">What is RyzMax?</button>
+        <button class="suggest-btn" data-question="What is his stack?">What is his stack?</button>
+        <button class="suggest-btn" data-question="How to contact him?">Contact details?</button>
+      </div>
+
+      <!-- Chat input -->
+      <div class="chatbot-input-container">
+        <input type="text" id="chatbot-input" placeholder="Ask a question..." autocomplete="off">
+        <button id="chatbot-send" aria-label="Send message">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEVEL UP CONGRATULATION OVERLAY -->
+  <div class="level-up-modal" id="level-up-modal">
+    <div class="level-up-card glass-card">
+      <div class="level-up-glow"></div>
+      <div class="lvl-header font-mono">SYSTEM LEVEL INCREMENTED</div>
+      <div class="lvl-badge">
+        <div class="lvl-badge-inner" id="modal-level-num">13</div>
+        <div class="lvl-badge-ring"></div>
+      </div>
+      <h2>LEVEL UP!</h2>
+      <p>Tuhin Ghorui has reached a new tier of experience.</p>
+      <div class="lvl-stats-compare font-mono">
+        <div class="compare-row"><span>INTELLIGENCE</span> <span class="old-stat" id="old-int">82</span> ➔ <span class="new-stat text-neon-cyan" id="new-int">84</span></div>
+        <div class="compare-row"><span>FULL-STACK</span> <span class="old-stat" id="old-fsd">74</span> ➔ <span class="new-stat text-neon-purple" id="new-fsd">77</span></div>
+        <div class="compare-row"><span>DEPLOY SPEED</span> <span class="old-stat" id="old-agi">68</span> ➔ <span class="new-stat text-neon-green" id="new-agi">72</span></div>
+      </div>
+      <button class="btn btn-primary" id="level-up-close">Acknowledge</button>
+    </div>
+  </div>
+
+  <!-- Main Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>
