@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Add scale effects on interactive elements
-    const hoverables = document.querySelectorAll('a, button, .quest-card, .suggest-btn, input, textarea');
+    const hoverables = document.querySelectorAll('a, button, .quest-card, .suggest-btn, input, textarea, .project-card');
     hoverables.forEach(el => {
       el.addEventListener('mouseenter', () => {
         cursor.style.width = '35px';
@@ -747,5 +747,19 @@ He builds high-performance responsive web environments and is aiming to design a
       });
     });
   }
+
+  // Bind click redirect to project cards
+  projectCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      // Don't redirect if clicking an anchor or button inside the card
+      if (e.target.closest('a') || e.target.closest('button')) {
+        return;
+      }
+      const repoUrl = card.dataset.repo;
+      if (repoUrl) {
+        window.open(repoUrl, '_blank');
+      }
+    });
+  });
 
 });
