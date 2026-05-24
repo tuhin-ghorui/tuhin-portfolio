@@ -488,9 +488,10 @@ He builds high-performance responsive web environments and is aiming to design a
           break;
 
         case 'projects':
-          outputHTML = `1. <span class="text-neon-green">RyzMax Gamified Engine</span> - AI-powered quest leveling system. [STATUS: Node In-Progress]
-2. <span class="text-neon-cyan">Personal AI Assistant</span> - Memory models & automation utilities. [STATUS: Research Active]
-3. <span class="text-neon-purple">Web Repos & Experiments</span> - Utility nodes, middleware, and layouts. [STATUS: Active Pipeline]`;
+          outputHTML = `1. <span class="text-neon-green">RyzMax (RyzMax-level-Up)</span> - Gamified self-improvement mobile app MVP. [STATUS: Active MVP / Expo]
+2. <span class="text-neon-cyan">AI Push-Up Counter</span> - Browser-based webcam pose tracker using MediaPipe. [STATUS: Live Demo]
+3. <span class="text-neon-purple">EduMentor AI</span> - Course mentorship platform with Hugging Face chatbot. [STATUS: Active Prototype]
+4. <span class="text-neon-green">Notes Sharing System</span> - Full-stack document CRUD sharing system. [STATUS: PHP + MySQL]`;
           break;
 
         case 'ryzmax':
@@ -561,9 +562,9 @@ He builds high-performance responsive web environments and is aiming to design a
 
   // Seeded responses database
   const chatbotBrain = {
-    whois: "Tuhin Ghorui is a BCA student & computer science builder currently working from Goa, India. He builds intelligent software using AI integrations (OpenAI LLM APIs) alongside standard full-stack frameworks (Node.js, Express, React). He focuses on deliberate learning, coding streak preservation, and shipping models early.",
-    ryzmax: "RyzMax is Tuhin's central project. It is a gamified life leveling dashboard. Users can manage tasks as 'Quests', track completed items, level up, and increase Tuhin's attributes (Intelligence, Full-Stack skill, Speed). It mixes modern backend database queries (MongoDB) with OpenAI interfaces to generate custom progress quests.",
-    stack: "Tuhin's core capability matrix spans Python, HTML5, CSS3, and JavaScript. His current active development stack is React, Node.js, and Express. He is additionally exploring relational schemas (PostgreSQL) and structured agent configurations.",
+    whois: "Tuhin Ghorui is a BCA student & computer science builder currently working from Goa, India. His key projects include the RyzMax self-improvement mobile app (Expo React Native/TypeScript), an AI Push-Up Counter (MediaPipe webcam pose tracking), EduMentor AI (Hugging Face tutoring website), and a student Notes Sharing System (PHP/MySQL). He is dedicated to building intelligent systems and shipping products in public.",
+    ryzmax: "RyzMax is Tuhin's central project. It is a gamified self-improvement mobile app (with the active MVP built in Expo React Native & TypeScript). It gamifies daily habit tracking with XP rewards, customizable missions, streaks, achievements, and an AI coaching concept.",
+    stack: "Tuhin's core capability matrix spans JavaScript (ES6), HTML5, CSS3, PHP, MySQL, and Python. His frameworks and libraries of choice include React, React Native, Expo, MediaPipe computer vision APIs, and Hugging Face inference APIs.",
     contact: "You can reach Tuhin directly via email at <span class='text-neon-cyan'>tuhinghorui553@gmail.com</span>, or audit his daily contributions on GitHub at <span class='text-neon-cyan'>github.com/tuhin-ghorui</span>.",
     hire: "Tuhin is currently looking for technical internships, collaborations, or developer roles focusing on full-stack building and AI product design. Feel free to contact him via email or dispatch a form message!",
     default: "I didn't quite parse that request. Try selecting one of the prompt chips below, or ask directly about: Tuhin, RyzMax, his technical Stack, or Connection metrics."
