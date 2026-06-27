@@ -488,10 +488,8 @@ He builds high-performance responsive web environments and is aiming to design a
           break;
 
         case 'projects':
-          outputHTML = `1. <span class="text-neon-green">RyzMax (RyzMax-level-Up)</span> - Gamified self-improvement mobile app MVP. [STATUS: Active MVP / Expo]
-2. <span class="text-neon-cyan">AI Push-Up Counter</span> - Browser-based webcam pose tracker using MediaPipe. [STATUS: Live Demo]
-3. <span class="text-neon-purple">EduMentor AI</span> - Course mentorship platform with Hugging Face chatbot. [STATUS: Active Prototype]
-4. <span class="text-neon-green">Notes Sharing System</span> - Full-stack document CRUD sharing system. [STATUS: PHP + MySQL]`;
+          outputHTML = `1. <span class="text-neon-green">WriteFlow Blog Platform</span> - MERN blogging platform with auth, Markdown editor, comments, likes, and admin moderation. [STATUS: Live]
+2. <span class="text-neon-cyan">TaskFlow</span> - Full-stack task manager with JWT auth, task CRUD, filters, sorting, and responsive dashboard. [STATUS: Live]`;
           break;
 
         case 'ryzmax':
