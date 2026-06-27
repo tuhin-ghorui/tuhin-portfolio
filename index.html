@@ -1,868 +1,1206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tuhin Ghorui | AI Engineer & Full-Stack Builder</title>
-  
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Personal portfolio of Tuhin Ghorui, a BCA student & AI Engineering builder based in Goa, India. Specializing in intelligent systems, full-stack development, and RyzMax progress tracker.">
-  <meta name="keywords" content="Tuhin Ghorui, Portfolio, AI Engineer, Full-Stack Developer, BCA Student, RyzMax, Goa, India, Python, JavaScript, React">
-  <meta name="author" content="Tuhin Ghorui">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tuhin-ghorui.github.io/">
-  <meta property="og:title" content="Tuhin Ghorui | AI Engineer & Full-Stack Builder">
-  <meta property="og:description" content="BCA Student building intelligent systems and custom AI assistants. Exploring full-stack dev and shipping products.">
-  
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tuhin Ghorui — Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:        #080810;
+    --bg2:       #0d0d1a;
+    --bg3:       #111128;
+    --panel:     #13132a;
+    --border:    #1e1e40;
+    --accent:    #6c63ff;
+    --accent2:   #00d4ff;
+    --accent3:   #ff6584;
+    --text:      #e8e8f0;
+    --muted:     #7070a0;
+    --dim:       #3a3a60;
+    --mono:      'Space Mono', monospace;
+    --sans:      'Space Grotesk', sans-serif;
+  }
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="assets/tuhin-logo.png">
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── GRID BACKGROUND ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.18;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(8,8,16,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--accent2); }
+
+  nav ul {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  nav ul a {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--accent2); }
+
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 8px 20px;
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: all 0.2s;
+  }
+
+  .nav-cta:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  /* ── HERO ── */
+  #hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 48px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-inner { max-width: 780px; }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent2);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--accent2);
+  }
+
+  .hero-name {
+    font-size: clamp(48px, 8vw, 88px);
+    font-weight: 700;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .hero-name .first { color: var(--text); }
+  .hero-name .last {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--accent);
+  }
+
+  .hero-role {
+    font-family: var(--mono);
+    font-size: 18px;
+    color: var(--muted);
+    margin-bottom: 32px;
+    margin-top: 16px;
+  }
+
+  .hero-role .highlight { color: var(--accent2); }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.75;
+    margin-bottom: 48px;
+  }
+
+  .hero-desc strong { color: var(--text); font-weight: 600; }
+
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    padding: 14px 32px;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
+  }
+
+  .btn-primary:hover {
+    background: #7c75ff;
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    padding: 14px 32px;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border: 1px solid var(--dim);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--accent2);
+    color: var(--accent2);
+  }
+
+  /* glowing cursor dot on hero */
+  .hero-glow {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(108,99,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 100px 48px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 60px;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 56px;
+    color: var(--text);
+  }
+
+  .section-title span { color: var(--accent); }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+
+  .about-text p strong { color: var(--text); }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .stat-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2px;
+  }
+
+  .skill-group {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    transition: border-color 0.2s;
+  }
+
+  .skill-group:hover { border-color: var(--accent); }
+
+  .skill-group-icon {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent2);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    border: 1px solid var(--dim);
+    padding: 4px 10px;
+    letter-spacing: 0.04em;
+    transition: all 0.2s;
+  }
+
+  .tag:hover {
+    color: var(--accent2);
+    border-color: var(--accent2);
+  }
+
+  .tag.learning {
+    color: var(--accent3);
+    border-color: rgba(255,101,132,0.3);
+  }
+
+  /* ── PROJECTS ── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2px;
+  }
+
+  .project-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 36px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(108,99,255,0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-4px);
+  }
+
+  .project-card:hover::after { opacity: 1; }
+
+  .project-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--dim);
+    margin-bottom: 20px;
+    letter-spacing: 0.1em;
+  }
+
+  .project-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+    flex: 1;
+    margin-bottom: 24px;
+  }
+
+  .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+
+  .stack-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent);
+    background: rgba(108,99,255,0.1);
+    border: 1px solid rgba(108,99,255,0.2);
+    padding: 3px 8px;
+    letter-spacing: 0.06em;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 16px;
+  }
+
+  .project-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .project-link:hover { color: var(--accent2); }
+
+  .project-link svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+  }
+
+  .cert-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    padding: 28px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .cert-card:hover { border-color: var(--accent2); }
+
+  .cert-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(0,212,255,0.08);
+    border: 1px solid rgba(0,212,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+
+  .cert-body {}
+
+  .cert-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .cert-issuer {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent2);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+  }
+
+  .cert-desc {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ── CONTACT ── */
+  .contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-text h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text);
+  }
+
+  .contact-text p {
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    font-size: 15px;
+  }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 14px;
+    transition: color 0.2s;
+    padding: 14px 18px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+  }
+
+  .contact-link:hover {
+    color: var(--accent2);
+    border-color: var(--accent2);
+  }
+
+  .contact-link .link-icon {
+    width: 36px;
+    height: 36px;
+    background: rgba(108,99,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .contact-link .link-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .contact-link .link-value {
+    font-size: 14px;
+    color: inherit;
+  }
+
+  /* contact form */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+
+  .form-group label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 16px;
+    font-family: var(--sans);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--accent);
+  }
+
+  .form-group textarea { height: 120px; }
+
+  /* ── FOOTER ── */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 32px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--dim);
+    letter-spacing: 0.06em;
+  }
+
+  footer a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--dim); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    nav ul { display: none; }
+    #hero { padding: 100px 24px 60px; }
+    section { padding: 72px 24px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    .hero-glow { display: none; }
+    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+  }
+
+  /* typewriter cursor */
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: var(--accent2);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>
 </head>
 <body>
 
-  <!-- Particle Background Canvas -->
-  <canvas id="flowfield-canvas"></canvas>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">TG<span>.</span></a>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="mailto:tuhinghorui553@gmail.com">Hire Me</a>
+</nav>
 
-  <!-- Custom Cursor Overlay -->
-  <div class="custom-cursor" id="custom-cursor"></div>
-  <div class="custom-cursor-dot" id="custom-cursor-dot"></div>
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Available for Internship · Goa, India</div>
+    <h1 class="hero-name">
+      <span class="first">Tuhin</span><br>
+      <span class="last">Ghorui</span>
+    </h1>
+    <p class="hero-role">
+      <span class="highlight" id="typewriter"></span><span class="cursor"></span>
+    </p>
+    <p class="hero-desc">
+      Final-year BCA student who builds <strong>real things</strong> — not just assignments.
+      I combine frontend craft, backend logic, and <strong>AI integration</strong> to ship
+      products that actually solve problems. Currently seeking a full-stack internship
+      where I can contribute from day one.
+    </p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="#projects">See My Work</a>
+      <a class="btn-ghost" href="#contact">Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-glow"></div>
+</div>
 
-  <!-- HEADER / NAVIGATION -->
-  <header class="main-header">
-    <div class="header-container">
-      <a href="#" class="logo" id="header-logo">
-        <span class="logo-accent">&lt;</span>TG<span class="logo-accent"> /&gt;</span>
-      </a>
-      
-      <nav class="nav-menu" id="nav-menu">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#ryzmax" class="nav-link">RyzMax RPG</a>
-        <a href="#terminal-section" class="nav-link">Console</a>
-        <a href="#skills" class="nav-link">Stack</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#contact" class="nav-link nav-btn">Let's Talk</a>
-      </nav>
+<hr class="divider" />
 
-      <div class="header-right">
-        <div class="status-indicator">
-          <span class="pulse-dot"></span>
-          <span class="status-text">Learning Daily</span>
-        </div>
-        <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle navigation menu">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </button>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 · About</div>
+  <h2 class="section-title">Who I <span>Am</span></h2>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>
+        I'm Tuhin — a <strong>Full Stack Developer</strong> and <strong>AI enthusiast</strong>
+        based in Goa, India. I'm in the final year of my BCA at GVM's College, Ponda,
+        where I maintain a CGPA of 8.6/10.
+      </p>
+      <p>
+        I don't just write code — I think about <strong>products</strong>. Before opening
+        my editor, I write PRDs, map out user flows, and think about the problem I'm solving.
+        That's the mindset I bring to every project.
+      </p>
+      <p>
+        My focus right now: building full-stack web applications with <strong>React, Node.js,
+        and Supabase</strong>, and integrating AI APIs to create experiences that feel
+        genuinely intelligent. I'm a fast learner, I ship, and I care about the details.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">8.6</div>
+        <div class="stat-label">Current CGPA / 10</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Projects Shipped</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">AI</div>
+        <div class="stat-label">API Integration (Claude)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Willingness to Learn</div>
       </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
-    <!-- HERO SECTION -->
-    <section class="hero-section" id="hero">
-      <div class="container hero-container">
-        <div class="hero-content">
-          <div class="hero-eyebrow animate-fade">
-            <span class="badge-tag">BCA Student</span>
-            <span class="badge-tag">AI Engineering</span>
-            <span class="badge-tag">Goa, India 🇮🇳</span>
-          </div>
-          
-          <h1 class="hero-title">
-            <span class="title-light">TUHIN</span>
-            <span class="title-bold text-gradient glitch-text" data-text="GHORUI">GHORUI</span>
-          </h1>
-          
-          <p class="hero-subtitle">
-            Focused on building <span class="highlight-text">intelligent systems</span> with AI. Currently developing <strong>RyzMax</strong>, a gamified leveling system for real-life tracking. My ultimate goal is crafting a personal AI assistant from scratch.
-          </p>
-          
-          <div class="hero-actions">
-            <a href="#ryzmax" class="btn btn-primary">
-              <span>Explore RyzMax</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-            <a href="#projects" class="btn btn-secondary">
-              <span>View Projects</span>
-            </a>
-          </div>
-        </div>
-        
-        <!-- IDENTITY JSON CARD -->
-        <div class="hero-card-container">
-          <div class="glass-card identity-card" id="identity-card">
-            <div class="card-header">
-              <div class="terminal-dots">
-                <span class="dot-red"></span>
-                <span class="dot-yellow"></span>
-                <span class="dot-green"></span>
-              </div>
-              <span class="card-title">identity.json</span>
-            </div>
-            <div class="card-body font-mono">
-              <div class="json-line"><span class="json-key">"name"</span>: <span class="json-val">"Tuhin Ghorui"</span>,</div>
-              <div class="json-line"><span class="json-key">"role"</span>: <span class="json-val">"CS Student & Builder"</span>,</div>
-              <div class="json-line"><span class="json-key">"degree"</span>: <span class="json-val">"BCA"</span>,</div>
-              <div class="json-line"><span class="json-key">"location"</span>: <span class="json-val">"Goa, India"</span>,</div>
-              <div class="json-line"><span class="json-key">"specialty"</span>: <span class="json-val">"AI Products & Agentic Dev"</span>,</div>
-              <div class="json-line"><span class="json-key">"status"</span>: <span class="json-val text-neon-green">"● Open for Opportunities"</span>,</div>
-              <div class="json-line"><span class="json-key">"deep_work"</span>: <span class="json-val">"4 hours/day"</span>,</div>
-              <div class="json-line"><span class="json-key">"daily_quest"</span>: <span class="json-val text-neon-cyan">"Active"</span></div>
-            </div>
-            <div class="card-glow"></div>
-          </div>
-        </div>
+<hr class="divider" />
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">02 · Skills</div>
+  <h2 class="section-title">What I <span>Work With</span></h2>
+  <div class="skills-grid reveal">
+    <div class="skill-group">
+      <div class="skill-group-icon">🌐</div>
+      <div class="skill-group-title">Frontend</div>
+      <div class="skill-tags">
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Responsive Design</span>
+        <span class="tag">Bootstrap</span>
+        <span class="tag">DOM Manipulation</span>
+        <span class="tag learning">React ↗</span>
       </div>
-      <div class="scroll-indicator-container">
-        <a href="#about" class="scroll-indicator" aria-label="Scroll down">
-          <span class="mouse-wheel"></span>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-icon">⚙️</div>
+      <div class="skill-group-title">Backend</div>
+      <div class="skill-tags">
+        <span class="tag">PHP</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">DBMS</span>
+        <span class="tag learning">Node.js ↗</span>
+        <span class="tag learning">Express.js ↗</span>
+        <span class="tag learning">MongoDB ↗</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-icon">🤖</div>
+      <div class="skill-group-title">AI & APIs</div>
+      <div class="skill-tags">
+        <span class="tag">Anthropic Claude API</span>
+        <span class="tag">Prompt Engineering</span>
+        <span class="tag">API Integration</span>
+        <span class="tag learning">Supabase ↗</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-icon">🛠️</div>
+      <div class="skill-group-title">Languages & Tools</div>
+      <div class="skill-tags">
+        <span class="tag">Java</span>
+        <span class="tag">Python</span>
+        <span class="tag">C</span>
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">VS Code</span>
+        <span class="tag">Postman</span>
+        <span class="tag">Vercel</span>
+        <span class="tag">Figma</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-icon">🧠</div>
+      <div class="skill-group-title">Concepts</div>
+      <div class="skill-tags">
+        <span class="tag">OOP</span>
+        <span class="tag">DSA Basics</span>
+        <span class="tag">SDLC</span>
+        <span class="tag">Product Thinking</span>
+        <span class="tag">UI/UX Design</span>
+      </div>
+    </div>
+  </div>
+  <p style="font-family:var(--mono);font-size:11px;color:var(--dim);margin-top:20px;letter-spacing:0.1em;">
+    ↗ = actively learning right now
+  </p>
+</section>
+
+<hr class="divider" />
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">03 · Projects</div>
+  <h2 class="section-title">Things I've <span>Built</span></h2>
+  <div class="projects-grid reveal">
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <div class="project-num">PROJECT 001</div>
+      <div class="project-title">College Complaint Management System</div>
+      <div class="project-desc">
+        A full web-based platform for students and administrators to manage complaints.
+        Features secure authentication, complaint submission, real-time status tracking,
+        and an admin dashboard — built on a relational MySQL database.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">HTML</span>
+        <span class="stack-tag">CSS</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">PHP</span>
+        <span class="stack-tag">MySQL</span>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/TuhinGhorui" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
         </a>
       </div>
-    </section>
+    </div>
 
-    <!-- ABOUT SECTION -->
-    <section class="about-section" id="about">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">01 // INTRODUCTION</span>
-          <h2 class="section-title">The Mind Behind The <em>Code</em></h2>
-        </div>
-        
-        <div class="about-grid">
-          <div class="about-main-content">
-            <p class="paragraph-lead">
-              I apply theoretical computer science directly to real-world software. I believe building in public and shipping early are the absolute best accelerators for growth.
-            </p>
-            <p>
-              As a <strong>BCA student</strong>, I spend my time exploring full-stack engineering and bridging the gap between web systems and artificial intelligence. Rather than relying on simple wrappers, I'm diving into context window optimization, local agent architectures, and responsive system design.
-            </p>
-            <p>
-              My philosophy centers around <span class="text-neon-cyan">deliberate practice</span>. Daily code, iterative deployments, and learning in public. My current primary build is <strong>RyzMax</strong>, which implements customizable quest generation and habit loops powered by local AI logic.
-            </p>
-          </div>
-          
-          <div class="about-stats-grid">
-            <div class="stat-box glass-card">
-              <div class="stat-value text-neon-cyan" id="stat-projects">3+</div>
-              <div class="stat-label">Active Builds</div>
-            </div>
-            <div class="stat-box glass-card">
-              <div class="stat-value text-neon-purple" id="stat-degree">BCA</div>
-              <div class="stat-label">Degree Focus</div>
-            </div>
-            <div class="stat-box glass-card">
-              <div class="stat-value text-neon-green" id="stat-interest">AI</div>
-              <div class="stat-label">Core Engine</div>
-            </div>
-            <div class="stat-box glass-card">
-              <div class="stat-value text-gradient" id="stat-streak">365+</div>
-              <div class="stat-label">Streak Days</div>
-            </div>
-          </div>
-        </div>
+    <!-- Project 2 -->
+    <div class="project-card">
+      <div class="project-num">PROJECT 002</div>
+      <div class="project-title">Online Notes Sharing Platform</div>
+      <div class="project-desc">
+        A web platform for students to upload, manage, and download study notes.
+        Implemented full CRUD operations, user authentication, and admin management —
+        making knowledge sharing effortless for classmates.
       </div>
-    </section>
-
-    <!-- RYZMAX LEVEL UP SIMULATOR (GAMIFICATION WIDGET) -->
-    <section class="ryzmax-section" id="ryzmax">
-      <div class="container">
-        <div class="section-header text-center">
-          <span class="section-tag">02 // GAME ENGINE</span>
-          <h2 class="section-title text-center">RyzMax <em>Progression Dashboard</em></h2>
-          <p class="section-subtitle">
-            An interactive simulator showcasing the concept of my primary project: gamifying life progression using AI-generated quests and stat levels. Try completing Tuhin's daily quests to help him Level Up!
-          </p>
-        </div>
-
-        <div class="ryzmax-dashboard glass-card">
-          <!-- Stats Panel -->
-          <div class="ryzmax-stats-panel">
-            <div class="r-profile">
-              <div class="r-avatar">
-                <div class="avatar-glow"></div>
-                <span class="avatar-text">TG</span>
-              </div>
-              <div class="r-identity">
-                <h3 class="r-name">Tuhin Ghorui</h3>
-                <span class="r-class font-mono">Level <span id="ryzmax-level">12</span> AI Specialist</span>
-              </div>
-            </div>
-
-            <!-- Progress Bar -->
-            <div class="r-xp-container">
-              <div class="r-xp-header font-mono">
-                <span>XP PROGRESS</span>
-                <span id="ryzmax-xp-text">1850 / 3000 XP</span>
-              </div>
-              <div class="r-xp-bar-bg">
-                <div class="r-xp-bar-fill" id="ryzmax-xp-fill" style="width: 61.6%"></div>
-              </div>
-            </div>
-
-            <!-- Stats Grid -->
-            <div class="r-attributes font-mono">
-              <div class="r-attribute">
-                <span class="attr-label">INT (Intelligence)</span>
-                <div class="attr-bar">
-                  <div class="attr-fill bg-cyan" id="attr-int" style="width: 82%"></div>
-                </div>
-                <span class="attr-val" id="attr-int-val">82</span>
-              </div>
-              <div class="r-attribute">
-                <span class="attr-label">FSD (Full-Stack Skill)</span>
-                <div class="attr-bar">
-                  <div class="attr-fill bg-purple" id="attr-fsd" style="width: 74%"></div>
-                </div>
-                <span class="attr-val" id="attr-fsd-val">74</span>
-              </div>
-              <div class="r-attribute">
-                <span class="attr-label">AGI (Deployment Speed)</span>
-                <div class="attr-bar">
-                  <div class="attr-fill bg-green" id="attr-agi" style="width: 68%"></div>
-                </div>
-                <span class="attr-val" id="attr-agi-val">68</span>
-              </div>
-              <div class="r-attribute">
-                <span class="attr-label">LC (Consistent Streak)</span>
-                <div class="attr-bar">
-                  <div class="attr-fill bg-red" id="attr-lc" style="width: 90%"></div>
-                </div>
-                <span class="attr-val" id="attr-lc-val">90</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Quest Panel -->
-          <div class="ryzmax-quests-panel">
-            <div class="panel-header font-mono">
-              <span>AVAILABLE QUESTS (CLICK TO COMPLETE)</span>
-              <button class="btn-text" id="reset-quests-btn">Refresh</button>
-            </div>
-            
-            <div class="quests-list" id="quests-list">
-              <!-- Quest 1 -->
-              <div class="quest-card" data-xp="450" data-stat="int">
-                <div class="quest-status-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
-                </div>
-                <div class="quest-details">
-                  <span class="quest-reward font-mono">+450 XP / +2 INT</span>
-                  <h4 class="quest-title">Implement Agentic Prompt Loops</h4>
-                  <p class="quest-desc">Optimize feedback cycles in local assistant code models.</p>
-                </div>
-                <button class="btn-quest-complete font-mono">Complete</button>
-              </div>
-
-              <!-- Quest 2 -->
-              <div class="quest-card" data-xp="350" data-stat="fsd">
-                <div class="quest-status-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
-                </div>
-                <div class="quest-details">
-                  <span class="quest-reward font-mono">+350 XP / +3 FSD</span>
-                  <h4 class="quest-title">Refactor Express Async Middleware</h4>
-                  <p class="quest-desc">Build cleaner error catching filters for project routes.</p>
-                </div>
-                <button class="btn-quest-complete font-mono">Complete</button>
-              </div>
-
-              <!-- Quest 3 -->
-              <div class="quest-card" data-xp="500" data-stat="agi">
-                <div class="quest-status-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle></svg>
-                </div>
-                <div class="quest-details">
-                  <span class="quest-reward font-mono">+500 XP / +4 AGI</span>
-                  <h4 class="quest-title">Optimize Flowfield Canvas Drawing</h4>
-                  <p class="quest-desc">Leverage requestAnimationFrame vector math for 60fps.</p>
-                </div>
-                <button class="btn-quest-complete font-mono">Complete</button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="project-stack">
+        <span class="stack-tag">HTML</span>
+        <span class="stack-tag">CSS</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">PHP</span>
+        <span class="stack-tag">MySQL</span>
       </div>
-    </section>
-
-    <!-- INTERACTIVE TERMINAL SECTION -->
-    <section class="terminal-section" id="terminal-section">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">03 // SHELL INTERFACE</span>
-          <h2 class="section-title">Developers' <em>CLI Console</em></h2>
-          <p class="section-subtitle">A fully responsive command-line interface. Type commands directly to audit Tuhin's core systems.</p>
-        </div>
-
-        <div class="terminal-container glass-card" id="terminal-container">
-          <div class="terminal-top">
-            <div class="terminal-dots">
-              <span class="dot-red"></span>
-              <span class="dot-yellow"></span>
-              <span class="dot-green"></span>
-            </div>
-            <div class="terminal-tab font-mono">guest@tuhin-node:~</div>
-            <div class="terminal-action-icons">
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="12" x2="20" y2="12"></line></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </div>
-          </div>
-          
-          <div class="terminal-body font-mono" id="terminal-body">
-            <div class="terminal-welcome">
-              <p>Tuhin Ghorui Core Console System v2.6.5</p>
-              <p>Type <span class="text-neon-cyan">help</span> to view all available commands.</p>
-              <p>&nbsp;</p>
-            </div>
-            
-            <div class="terminal-history" id="terminal-history">
-              <!-- Logs print here -->
-            </div>
-            
-            <div class="terminal-input-row">
-              <span class="terminal-prompt">guest@tuhin-node:~$</span>
-              <input type="text" class="terminal-input" id="terminal-input" autocomplete="off" autofocus spellcheck="false" placeholder="type 'help'...">
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- STACK / SKILLS SECTION -->
-    <section class="skills-section" id="skills">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">04 // CAPABILITIES</span>
-          <h2 class="section-title">Technical <em>Stack</em></h2>
-        </div>
-
-        <div class="skills-wrapper">
-          <!-- comfortable -->
-          <div class="skills-group">
-            <h3 class="group-title font-mono"><span class="title-bullet text-neon-green">&lt;&gt;</span> Comfort Zone</h3>
-            <div class="skills-grid">
-              <div class="skill-card glass-card">
-                <div class="skill-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                </div>
-                <h4 class="skill-name">Frontend Basics</h4>
-                <p class="skill-desc">HTML5, CSS3, ES6 JavaScript</p>
-                <div class="skill-level font-mono">Expert</div>
-              </div>
-              <div class="skill-card glass-card">
-                <div class="skill-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2.5 3.19-2.5 5.5h20c0-2.31-1-4.24-2.5-5.5"></path><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"></path></svg>
-                </div>
-                <h4 class="skill-name">Languages</h4>
-                <p class="skill-desc">Python scripting, JavaScript logic</p>
-                <div class="skill-level font-mono">Advanced</div>
-              </div>
-              <div class="skill-card glass-card">
-                <div class="skill-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                </div>
-                <h4 class="skill-name">Version Control</h4>
-                <p class="skill-desc">Git workflow, GitHub repositories</p>
-                <div class="skill-level font-mono">Expert</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- active learning -->
-          <div class="skills-group">
-            <h3 class="group-title font-mono"><span class="title-bullet text-neon-cyan">/*</span> Active Research</h3>
-            <div class="skills-grid">
-              <div class="skill-card glass-card">
-                <div class="skill-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
-                </div>
-                <h4 class="skill-name">Backend</h4>
-                <p class="skill-desc">Node.js server-side, Express servers</p>
-                <div class="skill-level font-mono text-neon-cyan">Learning</div>
-              </div>
-              <div class="skill-card glass-card">
-                <div class="skill-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
-                </div>
-                <h4 class="skill-name">Frameworks</h4>
-                <p class="skill-desc">React.js, React Native app structures</p>
-                <div class="skill-level font-mono text-neon-cyan">Learning</div>
-              </div>
-              <div class="skill-card glass-card">
-                <div class="skill-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72"></path><path d="M2 12h20"></path></svg>
-                </div>
-                <h4 class="skill-name">AI & LLMs</h4>
-                <p class="skill-desc">OpenAI APIs, agent context loops</p>
-                <div class="skill-level font-mono text-neon-cyan">Active</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- exploring -->
-          <div class="skills-group">
-            <h3 class="group-title font-mono"><span class="title-bullet text-neon-purple">//</span> Architecture & Tools</h3>
-            <div class="skills-grid">
-              <div class="skill-card glass-card">
-                <div class="skill-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="15" y1="3" x2="15" y2="21"></line><line x1="3" y1="9" x2="21" y2="9"></line><line x1="3" y1="15" x2="21" y2="15"></line></svg>
-                </div>
-                <h4 class="skill-name">Databases</h4>
-                <p class="skill-desc">MongoDB clusters, SQL (PostgreSQL)</p>
-                <div class="skill-level font-mono text-neon-purple">Exploring</div>
-              </div>
-              <div class="skill-card glass-card">
-                <div class="skill-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                </div>
-                <h4 class="skill-name">Design & UX</h4>
-                <p class="skill-desc">Figma prototyping, layout styling</p>
-                <div class="skill-level font-mono text-neon-purple">Exploring</div>
-              </div>
-              <div class="skill-card glass-card">
-                <div class="skill-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="18" r="3"></circle><line x1="8.5" y1="8.5" x2="15.5" y2="15.5"></line></svg>
-                </div>
-                <h4 class="skill-name">System Design</h4>
-                <p class="skill-desc">RESTful routing, system structures</p>
-                <div class="skill-level font-mono text-neon-purple">Basics</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS SECTION -->
-    <section class="projects-section" id="projects">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">05 // BUILDS</span>
-          <h2 class="section-title">Projects in <em>Public</em></h2>
-        </div>
-
-        <div class="projects-grid">
-          <!-- Project 1 -->
-          <div class="project-card glass-card" id="project-ryzmax" data-repo="https://github.com/tuhin-ghorui/RyzMax">
-            <div class="project-header">
-              <span class="project-number font-mono">01</span>
-              <div class="project-badge font-mono">
-                <span class="pulse-dot-green"></span>
-                ACTIVE MVP
-              </div>
-            </div>
-            
-            <h3 class="project-title">RyzMax (RyzMax-level-Up)</h3>
-            <p class="project-description">
-              A gamified self-improvement mobile app designed to track daily habits and leveling stats. Features custom XP mechanics, dynamic quests, habit streaks, achievements, and an AI-driven behavioral coach concept.
-            </p>
-            
-            <div class="project-status font-mono">
-              <div class="status-step"><span class="step-dot active"></span> Expo MVP Core Architecture: Done</div>
-              <div class="status-step"><span class="step-dot active"></span> Gamified XP & Achievements: Done</div>
-              <div class="status-step"><span class="step-dot"></span> AI Behavioral Coach: In-Progress</div>
-            </div>
-
-            <div class="project-tech font-mono">
-              <span>Expo</span>
-              <span>React Native</span>
-              <span>TypeScript</span>
-              <span>Behavioral AI</span>
-            </div>
-            
-            <div class="project-footer">
-              <a href="https://github.com/tuhin-ghorui/RyzMax" target="_blank" class="project-link font-mono">
-                <span>View Source (Public Repo)</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              </a>
-              <a href="#ryzmax" class="project-link font-mono">
-                <span>Live Simulator</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-              </a>
-            </div>
-            <div class="card-glow"></div>
-          </div>
-
-          <!-- Project 2 -->
-          <div class="project-card glass-card" id="project-pushup" data-repo="https://github.com/tuhin-ghorui/Push-up-Counter">
-            <div class="project-header">
-              <span class="project-number font-mono">02</span>
-              <div class="project-badge font-mono">
-                <span class="pulse-dot-cyan"></span>
-                LIVE APPLICATION
-              </div>
-            </div>
-            
-            <h3 class="project-title">AI Push-Up Counter</h3>
-            <p class="project-description">
-              A browser-based artificial intelligence workout counter. Accesses web camera streams to track body positioning, measure joint angles, and count workout repetitions in real-time.
-            </p>
-            
-            <div class="project-status font-mono">
-              <div class="status-step"><span class="step-dot active"></span> Webcam Pose Tracking: Done</div>
-              <div class="status-step"><span class="step-dot active"></span> Repetition Counter Logic: Done</div>
-              <div class="status-step"><span class="step-dot"></span> Audio Guidance Sync: In-Progress</div>
-            </div>
-
-            <div class="project-tech font-mono">
-              <span>MediaPipe Pose</span>
-              <span>JavaScript</span>
-              <span>Webcam API</span>
-              <span>HTML5 Canvas</span>
-            </div>
-            
-            <div class="project-footer">
-              <a href="https://github.com/tuhin-ghorui/Push-up-Counter" target="_blank" class="project-link font-mono">
-                <span>View Repository</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              </a>
-            </div>
-            <div class="card-glow"></div>
-          </div>
-
-          <!-- Project 3 -->
-          <div class="project-card glass-card" id="project-edumentor" data-repo="https://github.com/tuhin-ghorui/EduMentor-AI">
-            <div class="project-header">
-              <span class="project-number font-mono">03</span>
-              <div class="project-badge font-mono">
-                <span class="pulse-dot-purple"></span>
-                ACTIVE PROTOTYPE
-              </div>
-            </div>
-            
-            <h3 class="project-title">EduMentor AI</h3>
-            <p class="project-description">
-              An intelligent educational mentorship portal. Integrates Hugging Face language model APIs into a custom-styled web dialogue platform to answer course and research questions.
-            </p>
-            
-            <div class="project-status font-mono">
-              <div class="status-step"><span class="step-dot active"></span> Dialogue Interface UI: Done</div>
-              <div class="status-step"><span class="step-dot active"></span> HF API Integration: Done</div>
-              <div class="status-step"><span class="step-dot"></span> Subject Materials RAG: Planned</div>
-            </div>
-
-            <div class="project-tech font-mono">
-              <span>Hugging Face API</span>
-              <span>JavaScript</span>
-              <span>HTML5 / CSS3</span>
-              <span>AI Dialogue</span>
-            </div>
-            
-            <div class="project-footer">
-              <a href="https://github.com/tuhin-ghorui/EduMentor-AI" target="_blank" class="project-link font-mono">
-                <span>View Repository</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              </a>
-            </div>
-            <div class="card-glow"></div>
-          </div>
-
-          <!-- Project 4 -->
-          <div class="project-card glass-card" id="project-notes" data-repo="https://github.com/tuhin-ghorui/online-notes-sharing-system">
-            <div class="project-header">
-              <span class="project-number font-mono">04</span>
-              <div class="project-badge font-mono">
-                <span class="pulse-dot-green"></span>
-                PRODUCTION DEPLOY
-              </div>
-            </div>
-            
-            <h3 class="project-title">Notes Sharing System</h3>
-            <p class="project-description">
-              A full-stack notes archive web portal. Built with server-side page scripts and a relational database backend. Features secure user accounts, note uploads, category search, and an admin dashboard.
-            </p>
-            
-            <div class="project-status font-mono">
-              <div class="status-step"><span class="step-dot active"></span> Secure Auth & CRUD: Done</div>
-              <div class="status-step"><span class="step-dot active"></span> Notes Upload Pipeline: Done</div>
-              <div class="status-step"><span class="step-dot active"></span> Admin Dashboard Panel: Done</div>
-            </div>
-
-            <div class="project-tech font-mono">
-              <span>PHP</span>
-              <span>MySQL</span>
-              <span>Session Security</span>
-              <span>File Management</span>
-            </div>
-            
-            <div class="project-footer">
-              <a href="https://github.com/tuhin-ghorui/online-notes-sharing-system" target="_blank" class="project-link font-mono">
-                <span>View Repository</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              </a>
-            </div>
-            <div class="card-glow"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- LEARNING ROADMAP SECTION -->
-    <section class="learning-section" id="learning">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">06 // EVOLUTION</span>
-          <h2 class="section-title">Evolutionary <em>Roadmap</em></h2>
-          <p class="section-subtitle">Deliberate skill compounding scheduled for the calendar year.</p>
-        </div>
-
-        <div class="roadmap-timeline">
-          <!-- Item 1 -->
-          <div class="roadmap-item glass-card">
-            <div class="roadmap-phase font-mono text-neon-cyan">Q1 2026 // COMPLETED</div>
-            <h3 class="roadmap-title">AI Engineering Foundations</h3>
-            <ul class="roadmap-details font-mono">
-              <li>LLM Concepts & Temperature Parameters</li>
-              <li>OpenAI & Anthropic API Architectures</li>
-              <li>System Prompt Optimization & Few-Shot Templates</li>
-            </ul>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="roadmap-item glass-card active">
-            <div class="roadmap-phase font-mono text-neon-green">Q1 - Q2 2026 // IN RUNTIME</div>
-            <h3 class="roadmap-title">Full-Stack Development</h3>
-            <ul class="roadmap-details font-mono">
-              <li>React Hooks & Virtual DOM Routing</li>
-              <li>Node.js Thread Pooling & Express Middleware</li>
-              <li>Relational Schema normalization in PostgreSQL</li>
-            </ul>
-            <div class="card-glow"></div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="roadmap-item glass-card">
-            <div class="roadmap-phase font-mono text-neon-purple">Q2 - Q3 2026 // EN ROUTE</div>
-            <h3 class="roadmap-title">Building AI Products</h3>
-            <ul class="roadmap-details font-mono">
-              <li>Distributed Vector Embeddings (pgvector)</li>
-              <li>Local Server Containerization (Docker nodes)</li>
-              <li>Structured LLM response schemas for apps</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BUILDING IN PUBLIC (GITHUB STATS) -->
-    <section class="building-section" id="building">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">07 // TRANSPARENCY</span>
-          <h2 class="section-title">Building in <em>Public</em></h2>
-          <p class="section-subtitle">Real-time statistics fetched from Tuhin's active development cycles.</p>
-        </div>
-
-        <div class="building-grid">
-          <div class="building-text">
-            <p class="paragraph-lead">
-              I share my repository actions publically. No filters, no hidden drafts—just active loops, bugs, and consistent refactors.
-            </p>
-            <p>
-              By pushing daily commits and documenting systems in public, I hold myself accountable to the standard of elite developers. My repos are open to inspection, pull requests, and forks.
-            </p>
-            <a href="https://github.com/tuhin-ghorui" target="_blank" class="btn btn-secondary flex-center">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              <span>Explore GitHub Node</span>
-            </a>
-          </div>
-
-          <div class="building-stats-grid">
-            <div class="b-stat-card glass-card">
-              <div class="b-stat-num text-neon-cyan">50+</div>
-              <div class="b-stat-label font-mono">Monthly Commits</div>
-            </div>
-            <div class="b-stat-card glass-card">
-              <div class="b-stat-num text-neon-green">12+</div>
-              <div class="b-stat-label font-mono">Active Repositories</div>
-            </div>
-            <div class="b-stat-card glass-card">
-              <div class="b-stat-num text-neon-purple">200+</div>
-              <div class="b-stat-label font-mono">Total Contributions</div>
-            </div>
-            <div class="b-stat-card glass-card">
-              <div class="b-stat-num text-gradient">Daily</div>
-              <div class="b-stat-label font-mono">Coding Streak</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section class="contact-section" id="contact">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">08 // TRANSMISSION</span>
-          <h2 class="section-title">Open Node <em>Connection</em></h2>
-        </div>
-
-        <div class="contact-grid">
-          <div class="contact-info">
-            <h3>Let's build something that matters.</h3>
-            <p>
-              I am open to engineering collaborations, open-source projects, and technical internships. If you are building robust products or looking for a builder who works with focus—let's communicate.
-            </p>
-            
-            <div class="contact-methods">
-              <a href="mailto:tuhinghorui553@gmail.com" class="contact-method-card glass-card">
-                <div class="cm-icon bg-cyan-dim">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                </div>
-                <div class="cm-details">
-                  <span class="cm-label font-mono">DIRECT MAIL</span>
-                  <span class="cm-value">tuhinghorui553@gmail.com</span>
-                </div>
-              </a>
-
-              <a href="https://github.com/tuhin-ghorui" target="_blank" class="contact-method-card glass-card">
-                <div class="cm-icon bg-purple-dim">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                </div>
-                <div class="cm-details">
-                  <span class="cm-label font-mono">GITHUB PROFILE</span>
-                  <span class="cm-value">github.com/tuhin-ghorui</span>
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- Contact Form -->
-          <div class="contact-form-container glass-card">
-            <form class="contact-form" id="portfolio-contact-form">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="contact-name" class="font-mono">IDENT NAME</label>
-                  <input type="text" id="contact-name" placeholder="John Doe" required>
-                </div>
-                <div class="form-group">
-                  <label for="contact-email" class="font-mono">IDENT MAIL</label>
-                  <input type="email" id="contact-email" placeholder="john@domain.com" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="contact-message" class="font-mono">TRANSMISSION CONTENT</label>
-                <textarea id="contact-message" placeholder="Hi Tuhin, I want to talk about..." required></textarea>
-              </div>
-              
-              <button type="submit" class="btn btn-primary btn-block" id="form-submit-btn">
-                <span>DISPATCH TRANSMISSION</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-              </button>
-            </form>
-            <div class="form-success-overlay" id="form-success-overlay">
-              <div class="success-content">
-                <svg xmlns="http://www.w3.org/2000/svg" class="success-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <h3>TRANSMISSION DISPATCHED</h3>
-                <p class="font-mono">STATUS: SUCCESS [200 OK]</p>
-                <p>Tuhin's node has logged your message. He will reply shortly.</p>
-                <button class="btn btn-secondary" id="form-success-close">New Message</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="main-footer">
-    <div class="container footer-container">
-      <div class="footer-left">
-        <p class="font-mono">© 2026 Tuhin Ghorui. Engineered in Goa, India.</p>
-      </div>
-      <div class="footer-right">
-        <div class="footer-status font-mono">
-          <span class="status-node-dot"></span>
-          <span>NODE ONLINE // PORT: 8080</span>
-        </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/TuhinGhorui" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
       </div>
     </div>
-  </footer>
 
-  <!-- FLOATING AI ASSISTANT CHATBOT -->
-  <div class="chatbot-wrapper" id="chatbot-wrapper">
-    <!-- Chat Toggle Bubble -->
-    <button class="chatbot-trigger" id="chatbot-trigger" aria-label="Toggle AI Assistant Chat">
-      <span class="trigger-glow"></span>
-      <svg class="chat-icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-      <svg class="chat-icon-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
+    <!-- Project 3 -->
+    <div class="project-card">
+      <div class="project-num">PROJECT 003</div>
+      <div class="project-title">AI Habit Tracker</div>
+      <div class="project-desc">
+        A single-page habit tracker powered by the Anthropic Claude API. Tracks streaks,
+        logs completions, and generates personalised AI coaching feedback per habit —
+        all in vanilla JS with zero dependencies.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">HTML</span>
+        <span class="stack-tag">CSS</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">Claude API</span>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/TuhinGhorui" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
 
-    <!-- Chat Window -->
-    <div class="chatbot-window glass-card" id="chatbot-window">
-      <div class="chatbot-header">
-        <div class="chatbot-info">
-          <div class="chatbot-avatar">
-            <span class="chatbot-avatar-dot"></span>
-            AI
-          </div>
+    <!-- Project 4 -->
+    <div class="project-card">
+      <div class="project-num">PROJECT 004</div>
+      <div class="project-title">Personal Developer Portfolio</div>
+      <div class="project-desc">
+        Designed and built from scratch — no templates. Dark futuristic aesthetic,
+        responsive across all devices, SEO-optimised, and deployed on Vercel.
+        This is the site you're looking at right now.
+      </div>
+      <div class="project-stack">
+        <span class="stack-tag">HTML</span>
+        <span class="stack-tag">CSS</span>
+        <span class="stack-tag">JavaScript</span>
+        <span class="stack-tag">Vercel</span>
+      </div>
+      <div class="project-links">
+        <a class="project-link" href="https://github.com/TuhinGhorui" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a class="project-link" href="https://tuhin-portfolio-pi.vercel.app" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Live
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label">04 · Certifications</div>
+  <h2 class="section-title">What I've <span>Earned</span></h2>
+  <div class="cert-list reveal">
+
+    <div class="cert-card">
+      <div class="cert-icon">🎨</div>
+      <div class="cert-body">
+        <div class="cert-name">Responsive Web Design</div>
+        <div class="cert-issuer">freeCodeCamp</div>
+        <div class="cert-desc">HTML, CSS, Flexbox, Grid — building layouts that work on every screen size.</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">☕</div>
+      <div class="cert-body">
+        <div class="cert-name">Java Programming</div>
+        <div class="cert-issuer">HackerRank / Course</div>
+        <div class="cert-desc">Object-oriented programming, data structures, and core Java fundamentals.</div>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-icon">🐍</div>
+      <div class="cert-body">
+        <div class="cert-name">Python Programming</div>
+        <div class="cert-issuer">CS50P · Harvard / edX</div>
+        <div class="cert-desc">Introduction to programming with Python — functions, OOP, file I/O, and more.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">05 · Contact</div>
+  <h2 class="section-title">Let's <span>Work Together</span></h2>
+  <div class="contact-inner reveal">
+    <div class="contact-text">
+      <h3>Open to Internship Opportunities</h3>
+      <p>
+        I'm actively looking for a frontend or full-stack developer internship where
+        I can contribute real work, learn from experienced developers, and grow fast.
+        If you're building something interesting — let's talk.
+      </p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:tuhinghorui553@gmail.com">
+          <div class="link-icon">✉️</div>
           <div>
-            <h4>TG-Assistant</h4>
-            <span class="chatbot-status font-mono">Active Agent v1.0</span>
+            <span class="link-label">Email</span>
+            <span class="link-value">tuhinghorui553@gmail.com</span>
           </div>
-        </div>
-        <button class="chatbot-close-btn" id="chatbot-close-btn" aria-label="Close Chat">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-      </div>
-
-      <div class="chatbot-messages" id="chatbot-messages">
-        <div class="chat-message bot">
-          <div class="message-content">
-            <p>Welcome! I'm Tuhin's mock AI Assistant. Ask me anything about Tuhin's projects, technical skills, or how to contact him.</p>
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/tuhinghorui" target="_blank">
+          <div class="link-icon">💼</div>
+          <div>
+            <span class="link-label">LinkedIn</span>
+            <span class="link-value">linkedin.com/in/tuhinghorui</span>
           </div>
-        </div>
-      </div>
-
-      <!-- Quick prompts -->
-      <div class="chatbot-suggestions" id="chatbot-suggestions">
-        <button class="suggest-btn" data-question="Who is Tuhin?">Who is Tuhin?</button>
-        <button class="suggest-btn" data-question="What is RyzMax?">What is RyzMax?</button>
-        <button class="suggest-btn" data-question="What is his stack?">What is his stack?</button>
-        <button class="suggest-btn" data-question="How to contact him?">Contact details?</button>
-      </div>
-
-      <!-- Chat input -->
-      <div class="chatbot-input-container">
-        <input type="text" id="chatbot-input" placeholder="Ask a question..." autocomplete="off">
-        <button id="chatbot-send" aria-label="Send message">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-        </button>
+        </a>
+        <a class="contact-link" href="https://github.com/TuhinGhorui" target="_blank">
+          <div class="link-icon">🐙</div>
+          <div>
+            <span class="link-label">GitHub</span>
+            <span class="link-value">github.com/TuhinGhorui</span>
+          </div>
+        </a>
+        <a class="contact-link" href="https://www.youtube.com/@TuhinGhoruiHere" target="_blank">
+          <div class="link-icon">▶️</div>
+          <div>
+            <span class="link-label">YouTube</span>
+            <span class="link-value">@TuhinGhoruiHere</span>
+          </div>
+        </a>
+        <a class="contact-link" href="tel:+918767979421">
+          <div class="link-icon">📞</div>
+          <div>
+            <span class="link-label">Phone</span>
+            <span class="link-value">+91 8767979421</span>
+          </div>
+        </a>
       </div>
     </div>
-  </div>
 
-  <!-- LEVEL UP CONGRATULATION OVERLAY -->
-  <div class="level-up-modal" id="level-up-modal">
-    <div class="level-up-card glass-card">
-      <div class="level-up-glow"></div>
-      <div class="lvl-header font-mono">SYSTEM LEVEL INCREMENTED</div>
-      <div class="lvl-badge">
-        <div class="lvl-badge-inner" id="modal-level-num">13</div>
-        <div class="lvl-badge-ring"></div>
+    <div class="contact-form">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" placeholder="John Smith" />
       </div>
-      <h2>LEVEL UP!</h2>
-      <p>Tuhin Ghorui has reached a new tier of experience.</p>
-      <div class="lvl-stats-compare font-mono">
-        <div class="compare-row"><span>INTELLIGENCE</span> <span class="old-stat" id="old-int">82</span> ➔ <span class="new-stat text-neon-cyan" id="new-int">84</span></div>
-        <div class="compare-row"><span>FULL-STACK</span> <span class="old-stat" id="old-fsd">74</span> ➔ <span class="new-stat text-neon-purple" id="new-fsd">77</span></div>
-        <div class="compare-row"><span>DEPLOY SPEED</span> <span class="old-stat" id="old-agi">68</span> ➔ <span class="new-stat text-neon-green" id="new-agi">72</span></div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" placeholder="john@company.com" />
       </div>
-      <button class="btn btn-primary" id="level-up-close">Acknowledge</button>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Hi Tuhin, we'd love to have you intern with us..."></textarea>
+      </div>
+      <button class="btn-primary" onclick="handleSend()" style="width:fit-content;">Send Message</button>
+      <p id="form-msg" style="font-family:var(--mono);font-size:12px;color:var(--accent2);display:none;margin-top:8px;">
+        ✓ Message sent! I'll get back to you within 24 hours.
+      </p>
     </div>
   </div>
+</section>
 
-  <!-- Main Scripts -->
-  <script src="script.js"></script>
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Tuhin Ghorui · Built from scratch · <a href="https://github.com/TuhinGhorui">github.com/TuhinGhorui</a></p>
+  <p style="color:var(--dim);">Goa, India · Available for Internship</p>
+</footer>
+
+<script>
+  // ── TYPEWRITER ──
+  const roles = [
+    "Full Stack Developer",
+    "Frontend Engineer",
+    "AI API Integrator",
+    "BCA Final Year · CGPA 8.6",
+  ];
+  let ri = 0, ci = 0, deleting = false;
+  const el = document.getElementById("typewriter");
+
+  function type() {
+    const current = roles[ri];
+    if (!deleting) {
+      el.textContent = current.slice(0, ++ci);
+      if (ci === current.length) {
+        deleting = true;
+        setTimeout(type, 1800);
+        return;
+      }
+    } else {
+      el.textContent = current.slice(0, --ci);
+      if (ci === 0) {
+        deleting = false;
+        ri = (ri + 1) % roles.length;
+      }
+    }
+    setTimeout(type, deleting ? 40 : 80);
+  }
+  type();
+
+  // ── SCROLL REVEAL ──
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+
+  // ── ACTIVE NAV ──
+  const sections = document.querySelectorAll("section[id], div[id='hero']");
+  const navLinks = document.querySelectorAll("nav ul a");
+
+  window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute("href") === `#${current}` ? "var(--accent2)" : "";
+    });
+  });
+
+  // ── FAKE FORM ──
+  function handleSend() {
+    const name = document.querySelector("input[type=text]").value;
+    const email = document.querySelector("input[type=email]").value;
+    const msg = document.querySelector("textarea").value;
+    if (!name || !email || !msg) {
+      alert("Please fill in all fields.");
+      return;
+    }
+    document.getElementById("form-msg").style.display = "block";
+    document.querySelectorAll("input, textarea").forEach(i => i.value = "");
+  }
+
+  // ── GLOW FOLLOW MOUSE (hero only) ──
+  const glow = document.querySelector(".hero-glow");
+  document.addEventListener("mousemove", e => {
+    if (e.clientY < window.innerHeight) {
+      glow.style.transform = `translate(${(e.clientX - window.innerWidth * 0.7) * 0.05}px, calc(-50% + ${(e.clientY - window.innerHeight * 0.5) * 0.05}px))`;
+    }
+  });
+</script>
+
 </body>
 </html>
