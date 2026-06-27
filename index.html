@@ -406,6 +406,7 @@
     transition: all 0.3s;
     display: flex;
     flex-direction: column;
+    cursor: pointer;
   }
 
   .project-card::after {
@@ -1203,6 +1204,17 @@
     if (e.clientY < window.innerHeight) {
       glow.style.transform = `translate(${(e.clientX - window.innerWidth * 0.7) * 0.05}px, calc(-50% + ${(e.clientY - window.innerHeight * 0.5) * 0.05}px))`;
     }
+  });
+
+  // ── PROJECT CARD CLICK ──
+  document.querySelectorAll(".project-card").forEach(card => {
+    card.addEventListener("click", e => {
+      if (e.target.closest("a")) return;
+      const url = card.getAttribute("data-repo");
+      if (url) {
+        window.open(url, "_blank", "noopener");
+      }
+    });
   });
 </script>
 
