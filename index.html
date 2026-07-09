@@ -1,1253 +1,508 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tuhin Ghorui — Full Stack Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+<meta name="description" content="Tuhin Ghorui — Full Stack Developer. BCA student directing AI-assisted development to ship real full-stack products.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg:        #080810;
-    --bg2:       #0d0d1a;
-    --bg3:       #111128;
-    --panel:     #13132a;
-    --border:    #1e1e40;
-    --accent:    #6c63ff;
-    --accent2:   #00d4ff;
-    --accent3:   #ff6584;
-    --text:      #e8e8f0;
-    --muted:     #7070a0;
-    --dim:       #3a3a60;
-    --mono:      'Space Mono', monospace;
-    --sans:      'Space Grotesk', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* ── NOISE OVERLAY ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.4;
-  }
-
-  /* ── GRID BACKGROUND ── */
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: 0.18;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 48px;
-    background: rgba(8,8,16,0.85);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .nav-logo {
-    font-family: var(--mono);
-    font-size: 15px;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-    text-decoration: none;
-  }
-
-  .nav-logo span { color: var(--accent2); }
-
-  nav ul {
-    display: flex;
-    gap: 36px;
-    list-style: none;
-  }
-
-  nav ul a {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  nav ul a:hover { color: var(--accent2); }
-
-  .nav-cta {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 8px 20px;
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    transition: all 0.2s;
-  }
-
-  .nav-cta:hover {
-    background: var(--accent);
-    color: #fff;
-  }
-
-  /* ── HERO ── */
-  #hero {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 48px 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .hero-inner { max-width: 780px; }
-
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent2);
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: inline-block;
-    width: 32px;
-    height: 1px;
-    background: var(--accent2);
-  }
-
-  .hero-name {
-    font-size: clamp(48px, 8vw, 88px);
-    font-weight: 700;
-    line-height: 1.0;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
-  }
-
-  .hero-name .first { color: var(--text); }
-  .hero-name .last {
-    color: transparent;
-    -webkit-text-stroke: 1.5px var(--accent);
-  }
-
-  .hero-role {
-    font-family: var(--mono);
-    font-size: 18px;
-    color: var(--muted);
-    margin-bottom: 32px;
-    margin-top: 16px;
-  }
-
-  .hero-role .highlight { color: var(--accent2); }
-
-  .hero-desc {
-    font-size: 17px;
-    color: var(--muted);
-    max-width: 560px;
-    line-height: 1.75;
-    margin-bottom: 48px;
-  }
-
-  .hero-desc strong { color: var(--text); font-weight: 600; }
-
-  .hero-btns {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #fff;
-    padding: 14px 32px;
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 0 100%);
-  }
-
-  .btn-primary:hover {
-    background: #7c75ff;
-    transform: translateY(-2px);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--text);
-    padding: 14px 32px;
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    text-decoration: none;
-    border: 1px solid var(--dim);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--accent2);
-    color: var(--accent2);
-  }
-
-  /* glowing cursor dot on hero */
-  .hero-glow {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 420px;
-    height: 420px;
-    background: radial-gradient(circle, rgba(108,99,255,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  /* ── SECTIONS ── */
-  section {
-    position: relative;
-    z-index: 1;
-    padding: 100px 48px;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-    max-width: 60px;
-  }
-
-  .section-title {
-    font-size: clamp(28px, 4vw, 42px);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin-bottom: 56px;
-    color: var(--text);
-  }
-
-  .section-title span { color: var(--accent); }
-
-  /* ── ABOUT ── */
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
-  }
-
-  .about-text p {
-    color: var(--muted);
-    font-size: 16px;
-    line-height: 1.85;
-    margin-bottom: 20px;
-  }
-
-  .about-text p strong { color: var(--text); }
-
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-  }
-
-  .stat-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 28px 24px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-  }
-
-  .stat-num {
-    font-family: var(--mono);
-    font-size: 36px;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .stat-label {
-    font-size: 13px;
-    color: var(--muted);
-    letter-spacing: 0.03em;
-  }
-
-  /* ── SKILLS ── */
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2px;
-  }
-
-  .skill-group {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 32px 28px;
-    transition: border-color 0.2s;
-  }
-
-  .skill-group:hover { border-color: var(--accent); }
-
-  .skill-group-icon {
-    font-size: 22px;
-    margin-bottom: 16px;
-  }
-
-  .skill-group-title {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent2);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 18px;
-  }
-
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    border: 1px solid var(--dim);
-    padding: 4px 10px;
-    letter-spacing: 0.04em;
-    transition: all 0.2s;
-  }
-
-  .tag:hover {
-    color: var(--accent2);
-    border-color: var(--accent2);
-  }
-
-  .tag.learning {
-    color: var(--accent3);
-    border-color: rgba(255,101,132,0.3);
-  }
-
-  /* ── PROJECTS ── */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    gap: 2px;
-  }
-
-  .project-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 36px 32px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-  }
-
-  .project-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(108,99,255,0.04) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-  }
-
-  .project-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-  }
-
-  .project-card:hover::after { opacity: 1; }
-
-  .project-num {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--dim);
-    margin-bottom: 20px;
-    letter-spacing: 0.1em;
-  }
-
-  .project-title {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 12px;
-    letter-spacing: -0.01em;
-  }
-
-  .project-desc {
-    font-size: 14px;
-    color: var(--muted);
-    line-height: 1.75;
-    flex: 1;
-    margin-bottom: 24px;
-  }
-
-  .project-stack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 28px;
-  }
-
-  .stack-tag {
-    font-family: var(--mono);
-    font-size: 10px;
-    color: var(--accent);
-    background: rgba(108,99,255,0.1);
-    border: 1px solid rgba(108,99,255,0.2);
-    padding: 3px 8px;
-    letter-spacing: 0.06em;
-  }
-
-  .project-links {
-    display: flex;
-    gap: 16px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .project-link {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.2s;
-  }
-
-  .project-link:hover { color: var(--accent2); }
-
-  .project-link svg {
-    width: 14px;
-    height: 14px;
-    stroke: currentColor;
-    fill: none;
-    stroke-width: 2;
-  }
-
-  /* ── CERTIFICATIONS ── */
-  .cert-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2px;
-  }
-
-  .cert-card {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    padding: 28px 28px;
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    transition: border-color 0.2s;
-  }
-
-  .cert-card:hover { border-color: var(--accent2); }
-
-  .cert-icon {
-    width: 40px;
-    height: 40px;
-    background: rgba(0,212,255,0.08);
-    border: 1px solid rgba(0,212,255,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 18px;
-  }
-
-  .cert-body {}
-
-  .cert-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 4px;
-  }
-
-  .cert-issuer {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent2);
-    letter-spacing: 0.08em;
-    margin-bottom: 6px;
-  }
-
-  .cert-desc {
-    font-size: 13px;
-    color: var(--muted);
-  }
-
-  /* ── CONTACT ── */
-  .contact-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-  }
-
-  .contact-text h3 {
-    font-size: 28px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: var(--text);
-  }
-
-  .contact-text p {
-    color: var(--muted);
-    line-height: 1.8;
-    margin-bottom: 40px;
-    font-size: 15px;
-  }
-
-  .contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .contact-link {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    text-decoration: none;
-    color: var(--muted);
-    font-size: 14px;
-    transition: color 0.2s;
-    padding: 14px 18px;
-    border: 1px solid var(--border);
-    background: var(--panel);
-  }
-
-  .contact-link:hover {
-    color: var(--accent2);
-    border-color: var(--accent2);
-  }
-
-  .contact-link .link-icon {
-    width: 36px;
-    height: 36px;
-    background: rgba(108,99,255,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-
-  .contact-link .link-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--dim);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 2px;
-  }
-
-  .contact-link .link-value {
-    font-size: 14px;
-    color: inherit;
-  }
-
-  /* contact form */
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
-
-  .form-group label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .form-group input,
-  .form-group textarea {
-    background: var(--panel);
-    border: 1px solid var(--border);
-    color: var(--text);
-    padding: 12px 16px;
-    font-family: var(--sans);
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s;
-    resize: none;
-  }
-
-  .form-group input:focus,
-  .form-group textarea:focus {
-    border-color: var(--accent);
-  }
-
-  .form-group textarea { height: 120px; }
-
-  /* ── FOOTER ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    border-top: 1px solid var(--border);
-    padding: 32px 48px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  footer p {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--dim);
-    letter-spacing: 0.06em;
-  }
-
-  footer a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  /* ── DIVIDER ── */
-  .divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ── SCROLLBAR ── */
-  ::-webkit-scrollbar { width: 4px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--dim); }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    nav { padding: 16px 24px; }
-    nav ul { display: none; }
-    #hero { padding: 100px 24px 60px; }
-    section { padding: 72px 24px; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .contact-inner { grid-template-columns: 1fr; gap: 40px; }
-    .hero-glow { display: none; }
-    footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
-  }
-
-  /* typewriter cursor */
-  .cursor {
-    display: inline-block;
-    width: 3px;
-    height: 1em;
-    background: var(--accent2);
-    margin-left: 4px;
-    vertical-align: middle;
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+  :root{
+    --bg:#FAF9F5;
+    --bg-alt:#F1EEE6;
+    --ink:#171A21;
+    --ink-soft:#565C6E;
+    --ink-faint:#8A8F9E;
+    --line:#E3DFD2;
+    --accent:#25476B;
+    --accent-soft:#DEE7EF;
+    --accent-2:#8A6D3B;
+    --card:#FFFFFF;
+    --radius:10px;
+    --maxw:960px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Newsreader',Georgia,serif;
+    font-weight:500;
+    color:var(--ink);
+    margin:0;
+  }
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'IBM Plex Mono',monospace; letter-spacing:0.02em;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+
+  /* Skip link */
+  .skip-link{position:absolute; left:-999px; top:0; background:var(--ink); color:#fff; padding:10px 16px; z-index:200; border-radius:0 0 6px 0;}
+  .skip-link:focus{left:0;}
+
+  /* Nav */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(250,249,245,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{display:flex; align-items:center; justify-content:space-between; height:64px;}
+  .brand{font-family:'Newsreader',serif; font-size:19px; font-weight:600;}
+  .navlinks{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .navlinks a{font-size:14px; color:var(--ink-soft); transition:color .15s;}
+  .navlinks a:hover, .navlinks a:focus-visible{color:var(--accent);}
+  .nav-cta{
+    font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+    background:var(--ink); color:#fff; padding:9px 16px; border-radius:6px;
+    transition:background .15s;
+  }
+  .nav-cta:hover{background:var(--accent);}
+  .nav-toggle{display:none;}
+
+  /* status strip — signature element */
+  .status-strip{
+    background:var(--bg-alt); border-bottom:1px solid var(--line);
+    font-size:12.5px; color:var(--ink-soft);
+  }
+  .status-strip .wrap{display:flex; align-items:center; justify-content:space-between; height:34px;}
+  .status-dot{
+    display:inline-block; width:7px; height:7px; border-radius:50%;
+    background:#3F8F5F; margin-right:7px; position:relative; top:-1px;
+    box-shadow:0 0 0 0 rgba(63,143,95,0.5);
+    animation:pulse 2.4s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(63,143,95,0.35);}
+    70%{box-shadow:0 0 0 6px rgba(63,143,95,0);}
+    100%{box-shadow:0 0 0 0 rgba(63,143,95,0);}
+  }
+  #local-time{color:var(--ink-faint);}
+
+  /* Hero */
+  .hero{padding:88px 0 76px; border-bottom:1px solid var(--line);}
+  .hero-eyebrow{
+    display:inline-block; font-size:12px; color:var(--accent); margin-bottom:18px;
+    text-transform:uppercase; letter-spacing:0.09em;
+  }
+  .hero h1{font-size:clamp(38px,6vw,60px); line-height:1.08; letter-spacing:-0.01em;}
+  .hero h1 em{font-style:italic; color:var(--accent); font-weight:500;}
+  .hero-role{font-family:'Newsreader',serif; font-size:clamp(20px,2.6vw,26px); color:var(--ink-soft); font-style:italic; margin-top:6px;}
+  .hero-desc{max-width:640px; margin-top:22px; font-size:16.5px; color:var(--ink-soft);}
+  .hero-actions{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    font-size:14px; font-weight:600; padding:12px 22px; border-radius:6px;
+    border:1px solid var(--ink); transition:all .15s; display:inline-block;
+  }
+  .btn-primary{background:var(--ink); color:#fff;}
+  .btn-primary:hover{background:var(--accent); border-color:var(--accent);}
+  .btn-ghost{background:transparent; color:var(--ink); border-color:var(--line);}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  .hero-grid{display:grid; grid-template-columns:1.35fr 1fr; gap:56px; align-items:center;}
+  .hero-photo-wrap{display:flex; justify-content:center;}
+  .hero-photo{
+    position:relative; width:min(320px,80%); aspect-ratio:1/1; border-radius:50%;
+    overflow:hidden; border:1px solid var(--line); box-shadow:0 18px 40px rgba(23,26,33,0.14);
+    background:var(--bg-alt);
+  }
+  .hero-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+  .hero-photo-ring{
+    position:absolute; inset:-9px; border-radius:50%; border:1px dashed var(--accent-soft);
+    pointer-events:none;
+  }
+  .hero-stats{display:grid; grid-template-columns:repeat(4,1fr); gap:0; margin-top:56px; border-top:1px solid var(--line);}
+  .stat{padding:20px 0 0; border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat-num{font-family:'Newsreader',serif; font-size:30px; color:var(--ink);}
+  .stat-label{font-size:12.5px; color:var(--ink-faint); margin-top:4px;}
+
+  /* Section shell */
+  section{padding:72px 0;}
+  section.alt{background:var(--bg-alt);}
+  .section-head{margin-bottom:40px;}
+  .eyebrow{font-size:12px; color:var(--accent); text-transform:uppercase; letter-spacing:0.09em; margin-bottom:10px; display:block;}
+  .section-head h2{font-size:clamp(26px,3.4vw,34px);}
+
+  /* About */
+  .about-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:48px; align-items:start;}
+  .about-grid p{color:var(--ink-soft); margin:0 0 16px;}
+  .about-grid p:last-child{margin-bottom:0;}
+  .about-grid strong{color:var(--ink); font-weight:600;}
+  .fact-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:22px;}
+  .fact-row{display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid var(--line); font-size:14px;}
+  .fact-row:last-child{border-bottom:none;}
+  .fact-label{color:var(--ink-faint);}
+  .fact-val{color:var(--ink); font-weight:500; text-align:right;}
+
+  /* Skills */
+  .skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .skill-cell{background:var(--card); padding:22px;}
+  .skill-cell h3{font-family:'Inter',sans-serif; font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent); margin-bottom:12px;}
+  .tag-row{display:flex; flex-wrap:wrap; gap:7px;}
+  .tag{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft);
+    background:var(--bg-alt); border:1px solid var(--line); padding:4px 9px; border-radius:5px;
+  }
+  .skill-cell.note{background:var(--accent-soft);}
+  .skill-cell.note h3{color:var(--accent);}
+  .skill-cell.note p{font-size:13.5px; color:var(--ink-soft); margin:0; line-height:1.55;}
+
+  /* Experience */
+  .exp-card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:30px;}
+  .exp-top{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px; margin-bottom:18px;}
+  .exp-role{font-family:'Newsreader',serif; font-size:22px;}
+  .exp-org{color:var(--accent); font-weight:500;}
+  .exp-date{font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--ink-faint);}
+  .exp-card ul{margin:0; padding-left:20px; color:var(--ink-soft);}
+  .exp-card li{margin-bottom:9px;}
+  .exp-card li:last-child{margin-bottom:0;}
+  .exp-tags{margin-top:20px; padding-top:18px; border-top:1px solid var(--line);}
+
+  /* Projects */
+  .proj-list{display:flex; flex-direction:column; gap:16px;}
+  .proj-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:26px 28px; display:grid; grid-template-columns:auto 1fr auto; gap:24px; align-items:start;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  .proj-card:hover{border-color:var(--accent); box-shadow:0 4px 18px rgba(37,71,107,0.08);}
+  .proj-index{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-faint); padding-top:4px;}
+  .proj-body h3{font-size:19px; font-family:'Inter',sans-serif; font-weight:700; margin-bottom:6px;}
+  .proj-role{font-size:12.5px; color:var(--accent-2); font-weight:600; margin-bottom:8px; font-family:'IBM Plex Mono',monospace;}
+  .proj-body p{color:var(--ink-soft); margin:0 0 12px; font-size:14.5px;}
+  .proj-links{display:flex; gap:16px; align-self:start; padding-top:4px; white-space:nowrap;}
+  .proj-links a{font-size:13px; font-weight:600; color:var(--accent); border-bottom:1px solid transparent;}
+  .proj-links a:hover{border-color:var(--accent);}
+
+  /* Certifications */
+  .cert-list{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  .cert-item{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:18px 20px; display:flex; align-items:center; gap:14px; font-size:14.5px;
+  }
+  .cert-mark{
+    width:28px; height:28px; border-radius:50%; background:var(--accent-soft); color:var(--accent);
+    display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace;
+    font-size:13px; flex-shrink:0;
+  }
+
+  /* Contact */
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .contact-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:20px 22px; display:flex; align-items:center; justify-content:space-between;
+    transition:border-color .15s;
+  }
+  .contact-card:hover{border-color:var(--accent);}
+  .contact-label{font-size:12px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:4px;}
+  .contact-val{font-weight:600; font-size:15px;}
+  .contact-arrow{color:var(--ink-faint); font-size:18px;}
+
+  footer{border-top:1px solid var(--line); padding:26px 0; font-size:13px; color:var(--ink-faint);}
+  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;}
+  .reveal.in{opacity:1; transform:none;}
+
+  @media (max-width:820px){
+    .navlinks{display:none;}
+    .about-grid, .skills-grid, .cert-list, .contact-grid{grid-template-columns:1fr;}
+    .hero-stats{grid-template-columns:repeat(2,1fr); row-gap:20px;}
+    .stat:nth-child(2){border-right:none;}
+    .proj-card{grid-template-columns:1fr; gap:10px;}
+    .proj-links{white-space:normal;}
+    .hero-grid{grid-template-columns:1fr; gap:32px;}
+    .hero-photo-wrap{order:-1;}
+    .hero-photo{width:180px;}
   }
 </style>
 </head>
 <body>
+<a href="#main" class="skip-link">Skip to content</a>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-logo" href="#hero">TG<span>.</span></a>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#certifications">Certs</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a class="nav-cta" href="mailto:tuhinghorui553@gmail.com">Hire Me</a>
-</nav>
-
-<!-- HERO -->
-<div id="hero">
-  <div class="hero-inner">
-    <div class="hero-tag">Available for Internship · Goa, India</div>
-    <h1 class="hero-name">
-      <span class="first">Tuhin</span><br>
-      <span class="last">Ghorui</span>
-    </h1>
-    <p class="hero-role">
-      <span class="highlight" id="typewriter"></span><span class="cursor"></span>
-    </p>
-    <p class="hero-desc">
-      BCA student based in Goa with hands-on experience in Full Stack Development, Agile Software Development and AI-powered applications. Passionate about solving real-world problems through clean code and modern technologies. Currently seeking Full Stack Developer Internship opportunities.
-    </p>
-    <div class="hero-btns">
-      <a class="btn-primary" href="#projects">See My Work</a>
-      <a class="btn-ghost" href="#contact">Get In Touch</a>
-      <a class="btn-ghost" href="#contact">Resume</a>
+<header>
+  <div class="status-strip">
+    <div class="wrap">
+      <span><span class="status-dot" aria-hidden="true"></span>Open to Full Stack Developer internships</span>
+      <span id="local-time" class="mono"></span>
     </div>
   </div>
-  <div class="hero-glow"></div>
-</div>
+  <nav class="wrap" aria-label="Primary">
+    <a href="#main" class="brand">Tuhin Ghorui</a>
+    <ul class="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certs</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </nav>
+</header>
 
-<hr class="divider" />
+<main id="main">
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-label">01 · About</div>
-  <h2 class="section-title">Who I <span>Am</span></h2>
-  <div class="about-grid reveal">
-    <div class="about-text">
-      <p>
-        I'm Tuhin — a <strong>Full Stack Developer</strong> and <strong>AI enthusiast</strong>
-        based in Goa, India. I'm pursuing my BCA at GVM's College, Ponda,
-        where I maintain a CGPA of 8.6/10.
-      </p>
-      <p>
-        I don't just write code — I practice <strong>product thinking</strong> and <strong>agile software development</strong>. Before opening my editor, I map out user flows, design database schemas, and align on real-world problems to solve.
-      </p>
-      <p>
-        My focus right now: building modern full-stack web applications with <strong>React, Node.js, Express.js, and MongoDB</strong>, and integrating AI APIs to engineer intelligent web experiences. I learn by building real projects, solving problems, and delivering clean software.
-      </p>
-    </div>
-    <div class="about-stats">
-      <div class="stat-card">
-        <div class="stat-num">8.6</div>
-        <div class="stat-label">CGPA / 10</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">5+</div>
-        <div class="stat-label">Full Stack Projects</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">1</div>
-        <div class="stat-label">Internship Completed</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">Agile</div>
-        <div class="stat-label">Scrum Team Experience</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-label">02 · Skills</div>
-  <h2 class="section-title">What I <span>Work With</span></h2>
-  <div class="skills-grid reveal">
-    <div class="skill-group">
-      <div class="skill-group-icon">🌐</div>
-      <div class="skill-group-title">Frontend</div>
-      <div class="skill-tags">
-        <span class="tag">HTML5</span>
-        <span class="tag">CSS3</span>
-        <span class="tag">JavaScript</span>
-        <span class="tag">React</span>
-        <span class="tag">Responsive Design</span>
-        <span class="tag">Bootstrap</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-icon">⚙️</div>
-      <div class="skill-group-title">Backend</div>
-      <div class="skill-tags">
-        <span class="tag">Node.js</span>
-        <span class="tag">Express.js</span>
-        <span class="tag">PHP</span>
-        <span class="tag">REST APIs</span>
-        <span class="tag">JWT Authentication</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-icon">🗄️</div>
-      <div class="skill-group-title">Database</div>
-      <div class="skill-tags">
-        <span class="tag">MongoDB</span>
-        <span class="tag">MySQL</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-icon">💻</div>
-      <div class="skill-group-title">Languages</div>
-      <div class="skill-tags">
-        <span class="tag">Java</span>
-        <span class="tag">Python</span>
-        <span class="tag">C</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-icon">🛠️</div>
-      <div class="skill-group-title">Tools</div>
-      <div class="skill-tags">
-        <span class="tag">Git</span>
-        <span class="tag">GitHub</span>
-        <span class="tag">VS Code</span>
-        <span class="tag">Postman</span>
-        <span class="tag">Vercel</span>
-        <span class="tag">Figma</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-icon">🧠</div>
-      <div class="skill-group-title">Concepts</div>
-      <div class="skill-tags">
-        <span class="tag">OOP</span>
-        <span class="tag">Data Structures</span>
-        <span class="tag">DBMS</span>
-        <span class="tag">SDLC</span>
-        <span class="tag">Agile Scrum</span>
-        <span class="tag">MVC Architecture</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <div class="skill-group-icon">🤖</div>
-      <div class="skill-group-title">AI</div>
-      <div class="skill-tags">
-        <span class="tag">AI API Integration</span>
-        <span class="tag">Prompt Engineering</span>
-        <span class="tag">LLM Applications</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-label">03 · Experience</div>
-  <h2 class="section-title">Where I've <span>Worked</span></h2>
-  <div class="experience-list reveal">
-    <div class="project-card" style="cursor: default;">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
         <div>
-          <div class="project-title" style="margin-bottom: 4px;">Full Stack Development Intern</div>
-          <div style="font-family: var(--mono); font-size: 13px; color: var(--accent2); letter-spacing: 0.05em;">Thiranex Technologies</div>
+          <span class="hero-eyebrow">Goa, India · Available for internship</span>
+          <h1>Tuhin Ghorui<br>builds <em>full‑stack products</em>, end to end.</h1>
+          <p class="hero-role">Full Stack Developer · BCA Student</p>
+          <p class="hero-desc">I'm a BCA student who ships real, working software — from database schema to deployed UI. I direct AI-assisted development to move fast on React, Node.js and Express builds, while owning the data flow, API integration and testing myself.</p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">See my work</a>
+            <a href="#contact" class="btn btn-ghost">Get in touch</a>
+          </div>
         </div>
-        <div style="font-family: var(--mono); font-size: 11px; color: var(--muted); border: 1px solid var(--border); padding: 4px 12px; background: var(--bg2);">May 2026</div>
+        <div class="hero-photo-wrap">
+          <div class="hero-photo">
+            <div class="hero-photo-ring" aria-hidden="true"></div>
+            <img src="assets/profile-pic.webp" alt="Portrait of Tuhin Ghorui" width="320" height="320">
+          </div>
+        </div>
       </div>
-      <div class="project-desc" style="margin-bottom: 16px;">
-        Completed a one-month Full Stack Development Internship where I successfully built multiple full-stack web applications including:
-        <ul style="margin: 12px 0 12px 20px; color: var(--text); list-style-type: disc;">
-          <li>Personal Portfolio Website</li>
-          <li>Task Management Application</li>
-          <li>E-Commerce Web Application</li>
-          <li>Blog Platform</li>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-num">8.6</div><div class="stat-label">CGPA / 10</div></div>
+        <div class="stat"><div class="stat-num">3</div><div class="stat-label">Shipped Projects</div></div>
+        <div class="stat"><div class="stat-num">1</div><div class="stat-label">Internship Completed</div></div>
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">Certifications</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">01 — About</span>
+        <h2>Who I am</h2>
+      </div>
+      <div class="about-grid reveal">
+        <div>
+          <p>I'm currently pursuing my <strong>Bachelor of Computer Applications at GVM's College, Ponda, Goa</strong> (2024–2027), holding a CGPA of 8.6/10.</p>
+          <p>During a full-stack internship at <strong>Thiranex Technologies</strong>, I delivered four production-style applications — a portfolio site, task manager, e-commerce site and blog platform — directing AI-assisted development while owning API integration, data flow and testing on MySQL backends myself.</p>
+          <p>I'm comfortable across the stack: <strong>HTML, CSS, JavaScript, PHP and MySQL</strong> form my core, and I use AI-assisted tooling deliberately to build React and Node.js/Express applications faster, without losing ownership of how the system actually works.</p>
+        </div>
+        <div class="fact-card">
+          <div class="fact-row"><span class="fact-label">Location</span><span class="fact-val">Goa, India</span></div>
+          <div class="fact-row"><span class="fact-label">Education</span><span class="fact-val">BCA, GVM's College</span></div>
+          <div class="fact-row"><span class="fact-label">CGPA</span><span class="fact-val">8.6 / 10</span></div>
+          <div class="fact-row"><span class="fact-label">Status</span><span class="fact-val">Seeking internship</span></div>
+          <div class="fact-row"><span class="fact-label">Email</span><span class="fact-val">tuhinghorui553@gmail.com</span></div>
+          <div class="fact-row"><span class="fact-label">Phone</span><span class="fact-val">+91 87679 79421</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">02 — Skills</span>
+        <h2>What I work with</h2>
+      </div>
+      <div class="skills-grid reveal">
+        <div class="skill-cell">
+          <h3>Languages</h3>
+          <div class="tag-row"><span class="tag">Java</span><span class="tag">Python</span><span class="tag">PHP</span><span class="tag">C</span></div>
+        </div>
+        <div class="skill-cell">
+          <h3>Web Fundamentals</h3>
+          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </div>
+        <div class="skill-cell">
+          <h3>Databases</h3>
+          <div class="tag-row"><span class="tag">MySQL</span><span class="tag">PostgreSQL</span><span class="tag">Supabase</span></div>
+        </div>
+        <div class="skill-cell">
+          <h3>Tools &amp; Platforms</h3>
+          <div class="tag-row"><span class="tag">VS Code</span><span class="tag">Antigravity IDE</span><span class="tag">Vercel</span><span class="tag">Render</span><span class="tag">Figma</span><span class="tag">Git</span><span class="tag">GitHub</span></div>
+        </div>
+        <div class="skill-cell">
+          <h3>AI &amp; Integration</h3>
+          <div class="tag-row"><span class="tag">Prompt Engineering</span><span class="tag">Gemini API</span><span class="tag">ChatGPT</span></div>
+        </div>
+        <div class="skill-cell note">
+          <h3>How I use AI</h3>
+          <p>React, Node.js, Express.js and REST APIs are built and shipped via AI-assisted IDEs — I direct the build and own data flow, integration and testing.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">03 — Experience</span>
+        <h2>Where I've worked</h2>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-top">
+          <div>
+            <div class="exp-role">Full Stack Development Intern</div>
+            <div class="exp-org">Thiranex Technologies</div>
+          </div>
+          <div class="exp-date">May 2026</div>
+        </div>
+        <ul>
+          <li>Completed a Full Stack Development internship, delivering a Portfolio Website, Task Management Application, E-Commerce website, and Blog Platform.</li>
+          <li>Directed AI-assisted development (Node.js, Express.js, REST APIs) while owning data flow, API integration, and testing on MySQL backends.</li>
+          <li>Earned the internship completion certificate.</li>
         </ul>
-        Worked with HTML, CSS, JavaScript, Node.js, Express.js, REST APIs, MySQL/MongoDB and deployment. Successfully completed the internship and earned the internship certificate.
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">HTML</span>
-        <span class="stack-tag">CSS</span>
-        <span class="stack-tag">JavaScript</span>
-        <span class="stack-tag">Node.js</span>
-        <span class="stack-tag">Express.js</span>
-        <span class="stack-tag">REST APIs</span>
-        <span class="stack-tag">MySQL</span>
-        <span class="stack-tag">MongoDB</span>
+        <div class="exp-tags tag-row">
+          <span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">REST APIs</span><span class="tag">MySQL</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="divider" />
+  <section id="projects" class="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">04 — Projects</span>
+        <h2>Things I've built</h2>
+      </div>
+      <div class="proj-list reveal">
 
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-label">04 · Projects</div>
-  <h2 class="section-title">Things I've <span>Built</span></h2>
-  <div class="projects-grid reveal">
-
-    <!-- Project 1 -->
-    <div class="project-card" data-repo="https://ai-expense-tracker-eight-liart.vercel.app">
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-        <div class="project-num" style="margin-bottom:0;">PROJECT 001</div>
-        <span style="font-family: var(--mono); font-size: 10px; color: var(--accent2); background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.3); padding: 2px 8px; letter-spacing: 0.08em; text-transform: uppercase;">Featured Project</span>
-      </div>
-      <div class="project-title">AI Expense Tracker</div>
-      <div class="project-desc">
-        An AI-powered personal finance tracker that helps users manage daily expenses and receive intelligent spending insights. Integrated with Google Gemini Pro AI using an API key from Google AI Studio, featuring a modern responsive full-stack architecture.
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">React</span>
-        <span class="stack-tag">Node.js</span>
-        <span class="stack-tag">Express</span>
-        <span class="stack-tag">MongoDB</span>
-        <span class="stack-tag">Google Gemini AI</span>
-        <span class="stack-tag">Google AI Studio</span>
-        <span class="stack-tag">Vercel</span>
-      </div>
-      <div class="project-links">
-        <a class="project-link" href="https://ai-expense-tracker-eight-liart.vercel.app" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Live Demo
-        </a>
-        <a class="project-link" href="https://github.com/tuhin-ghorui/AI-Expense-Tracker" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          GitHub
-        </a>
-      </div>
-    </div>
-
-    <!-- Project 2 -->
-    <div class="project-card" data-repo="https://taskflow-o1pa.onrender.com">
-      <div class="project-num">PROJECT 002</div>
-      <div class="project-title">TaskFlow</div>
-      <div class="project-desc">
-        A full-stack task management application with authentication, task CRUD operations, filtering, responsive dashboard and modern UI built using the MERN stack.
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">React</span>
-        <span class="stack-tag">Node.js</span>
-        <span class="stack-tag">Express</span>
-        <span class="stack-tag">MongoDB</span>
-      </div>
-      <div class="project-links">
-        <a class="project-link" href="https://taskflow-o1pa.onrender.com" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Live Demo
-        </a>
-        <a class="project-link" href="https://github.com/tuhin-ghorui/TaskFlow" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          GitHub
-        </a>
-      </div>
-    </div>
-
-    <!-- Project 3 -->
-    <div class="project-card" data-repo="https://github.com/tuhin-ghorui/College-Complaint-Management-System-CCMS">
-      <div class="project-num">PROJECT 003</div>
-      <div class="project-title">College Complaint Management System (CCMS)</div>
-      <div class="project-desc">
-        Semester IV Agile Scrum Project developed by a team of five members.
-        <br><br>
-        <strong>Role:</strong> Full Stack Developer
-        <br><br>
-        Built authentication, complaint management, complaint tracking, administrator dashboard and MySQL database while following Agile Scrum methodology with sprint planning and Git collaboration.
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">PHP</span>
-        <span class="stack-tag">MySQL</span>
-        <span class="stack-tag">JavaScript</span>
-        <span class="stack-tag">HTML</span>
-        <span class="stack-tag">CSS</span>
-        <span class="stack-tag">Git</span>
-      </div>
-      <div class="project-links">
-        <a class="project-link" href="https://github.com/tuhin-ghorui/College-Complaint-Management-System-CCMS" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          GitHub
-        </a>
-      </div>
-    </div>
-
-    <!-- Project 4 -->
-    <div class="project-card" data-repo="https://tuhin-portfolio-pi.vercel.app">
-      <div class="project-num">PROJECT 004</div>
-      <div class="project-title">Developer Portfolio</div>
-      <div class="project-desc">
-        A modern futuristic developer portfolio showcasing projects, skills, experience and achievements with responsive design, animations and clean UI.
-      </div>
-      <div class="project-stack">
-        <span class="stack-tag">HTML5</span>
-        <span class="stack-tag">CSS3</span>
-        <span class="stack-tag">JavaScript</span>
-        <span class="stack-tag">Vercel</span>
-      </div>
-      <div class="project-links">
-        <a class="project-link" href="https://tuhin-portfolio-pi.vercel.app" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          Live Demo
-        </a>
-        <a class="project-link" href="https://github.com/tuhin-ghorui/tuhin-portfolio" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-          GitHub
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- CERTIFICATIONS -->
-<section id="certifications">
-  <div class="section-label">05 · Certifications</div>
-  <h2 class="section-title">What I've <span>Earned</span></h2>
-  <div class="cert-list reveal">
-
-    <div class="cert-card">
-      <div class="cert-icon">🚀</div>
-      <div class="cert-body">
-        <div class="cert-name">Full Stack Development Internship</div>
-        <div class="cert-issuer">Thiranex Technologies</div>
-        <div class="cert-desc">Successfully completed intensive internship building multiple full-stack applications with MERN & REST APIs.</div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<hr class="divider" />
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-label">06 · Contact</div>
-  <h2 class="section-title">Let's <span>Work Together</span></h2>
-  <div class="contact-inner reveal">
-    <div class="contact-text">
-      <h3>Open to Internship Opportunities</h3>
-      <p>
-        I'm actively looking for a frontend or full-stack developer internship where
-        I can contribute real work, learn from experienced developers, and grow fast.
-        If you're building something interesting — let's talk.
-      </p>
-      <div class="contact-links">
-        <a class="contact-link" href="mailto:tuhinghorui553@gmail.com">
-          <div class="link-icon">✉️</div>
-          <div>
-            <span class="link-label">Email</span>
-            <span class="link-value">tuhinghorui553@gmail.com</span>
+        <div class="proj-card">
+          <span class="proj-index mono">01</span>
+          <div class="proj-body">
+            <h3>AI Expense Tracker</h3>
+            <p>Built and shipped an AI-powered expense tracker with a responsive dashboard, directing AI-assisted development and owning data flow, Gemini API integration, and deployment.</p>
+            <div class="tag-row">
+              <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">Supabase (PostgreSQL)</span><span class="tag">Gemini API</span>
+            </div>
           </div>
-        </a>
-        <a class="contact-link" href="https://www.linkedin.com/in/tuhin-ghorui-30871b400/" target="_blank">
-          <div class="link-icon">💼</div>
-          <div>
-            <span class="link-label">LinkedIn</span>
-            <span class="link-value">linkedin.com/in/tuhinghorui</span>
+          <div class="proj-links">
+            <a href="https://ai-expense-tracker-eight-liart.vercel.app" target="_blank" rel="noopener">Live ↗</a>
+            <a href="https://github.com/tuhin-ghorui" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
-        </a>
-        <a class="contact-link" href="https://github.com/tuhin-ghorui" target="_blank">
-          <div class="link-icon">🐙</div>
-          <div>
-            <span class="link-label">GitHub</span>
-            <span class="link-value">github.com/tuhin-ghorui</span>
+        </div>
+
+        <div class="proj-card">
+          <span class="proj-index mono">02</span>
+          <div class="proj-body">
+            <h3>College Complaint Management System</h3>
+            <p class="proj-role">Semester IV Agile Project · Full Stack Developer · Team of 5</p>
+            <p>Built authentication, complaint tracking, and an admin dashboard on MySQL, following Agile Scrum methodology with sprint planning and Git collaboration.</p>
+            <div class="tag-row">
+              <span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag">JavaScript</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Git</span>
+            </div>
           </div>
-        </a>
-        <a class="contact-link" href="tel:+918767979421">
-          <div class="link-icon">📞</div>
-          <div>
-            <span class="link-label">Phone</span>
-            <span class="link-value">+91 8767979421</span>
+          <div class="proj-links">
+            <a href="https://github.com/tuhin-ghorui" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
+        </div>
+
+        <div class="proj-card">
+          <span class="proj-index mono">03</span>
+          <div class="proj-body">
+            <h3>Personal Developer Portfolio</h3>
+            <p>Shipped a responsive developer portfolio, directing AI-assisted React frontend development and owning layout and Vercel deployment.</p>
+            <div class="tag-row">
+              <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Vercel</span>
+            </div>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/tuhin-ghorui" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="certifications">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">05 — Certifications</span>
+        <h2>What I've earned</h2>
+      </div>
+      <div class="cert-list reveal">
+        <div class="cert-item"><span class="cert-mark mono">01</span>Full Stack Development Internship — Thiranex Technologies</div>
+        <div class="cert-item"><span class="cert-mark mono">02</span>MySQL — SQL and Database Testing</div>
+        <div class="cert-item"><span class="cert-mark mono">03</span>AWS Cloud Practitioner 2023: AWS Storage Services</div>
+        <div class="cert-item"><span class="cert-mark mono">04</span>Introduction to Data Analytics</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="alt">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">06 — Contact</span>
+        <h2>Let's work together</h2>
+      </div>
+      <p class="reveal" style="max-width:560px; color:var(--ink-soft); margin-bottom:28px;">I'm actively looking for a Frontend or Full Stack Developer internship where I can contribute real work, learn from experienced developers, and grow fast.</p>
+      <div class="contact-grid reveal">
+        <a class="contact-card" href="mailto:tuhinghorui553@gmail.com">
+          <div><div class="contact-label">Email</div><div class="contact-val">tuhinghorui553@gmail.com</div></div>
+          <span class="contact-arrow">→</span>
+        </a>
+        <a class="contact-card" href="tel:+918767979421">
+          <div><div class="contact-label">Phone</div><div class="contact-val">+91 87679 79421</div></div>
+          <span class="contact-arrow">→</span>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/tuhin-ghorui-30871b400/" target="_blank" rel="noopener">
+          <div><div class="contact-label">LinkedIn</div><div class="contact-val">tuhin-ghorui</div></div>
+          <span class="contact-arrow">→</span>
+        </a>
+        <a class="contact-card" href="https://github.com/tuhin-ghorui" target="_blank" rel="noopener">
+          <div><div class="contact-label">GitHub</div><div class="contact-val">tuhin-ghorui</div></div>
+          <span class="contact-arrow">→</span>
         </a>
       </div>
     </div>
+  </section>
 
-    <div class="contact-form">
-      <div class="form-group">
-        <label>Your Name</label>
-        <input type="text" placeholder="John Smith" />
-      </div>
-      <div class="form-group">
-        <label>Email Address</label>
-        <input type="email" placeholder="john@company.com" />
-      </div>
-      <div class="form-group">
-        <label>Message</label>
-        <textarea placeholder="Hi Tuhin, we'd love to have you intern with us..."></textarea>
-      </div>
-      <button class="btn-primary" onclick="handleSend()" style="width:fit-content;">Send Message</button>
-      <p id="form-msg" style="font-family:var(--mono);font-size:12px;color:var(--accent2);display:none;margin-top:8px;">
-        ✓ Message sent! I'll get back to you within 24 hours.
-      </p>
-    </div>
-  </div>
-</section>
+</main>
 
-<!-- FOOTER -->
 <footer>
-  <p>Designed & Developed by <a href="https://github.com/TuhinGhorui" target="_blank">Tuhin Ghorui</a> · Full Stack Developer</p>
-  <p style="color:var(--dim);">Goa, India · Available for Internship</p>
+  <div class="wrap">
+    <span>© 2026 Tuhin Ghorui — Full Stack Developer</span>
+    <span>Goa, India · Available for internship</span>
+  </div>
 </footer>
 
 <script>
-  // ── TYPEWRITER ──
-  const roles = [
-    "Full Stack Developer",
-    "MERN Stack Developer",
-    "AI API Integrator",
-    "BCA Student · CGPA 8.6",
-  ];
-  let ri = 0, ci = 0, deleting = false;
-  const el = document.getElementById("typewriter");
-
-  function type() {
-    const current = roles[ri];
-    if (!deleting) {
-      el.textContent = current.slice(0, ++ci);
-      if (ci === current.length) {
-        deleting = true;
-        setTimeout(type, 1800);
-        return;
-      }
-    } else {
-      el.textContent = current.slice(0, --ci);
-      if (ci === 0) {
-        deleting = false;
-        ri = (ri + 1) % roles.length;
-      }
-    }
-    setTimeout(type, deleting ? 40 : 80);
+  // Local time in Goa (IST)
+  function updateTime(){
+    var el = document.getElementById('local-time');
+    if(!el) return;
+    var opts = { timeZone:'Asia/Kolkata', hour:'2-digit', minute:'2-digit', hour12:false };
+    el.textContent = 'IST ' + new Intl.DateTimeFormat('en-GB', opts).format(new Date()) + ' — Goa';
   }
-  type();
+  updateTime();
+  setInterval(updateTime, 30000);
 
-  // ── SCROLL REVEAL ──
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add("visible");
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
-
-  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-  // ── ACTIVE NAV ──
-  const sections = document.querySelectorAll("section[id], div[id='hero']");
-  const navLinks = document.querySelectorAll("nav ul a");
-
-  window.addEventListener("scroll", () => {
-    let current = "";
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute("href") === `#${current}` ? "var(--accent2)" : "";
-    });
-  });
-
-  // ── FAKE FORM ──
-  function handleSend() {
-    const name = document.querySelector("input[type=text]").value;
-    const email = document.querySelector("input[type=email]").value;
-    const msg = document.querySelector("textarea").value;
-    if (!name || !email || !msg) {
-      alert("Please fill in all fields.");
-      return;
-    }
-    document.getElementById("form-msg").style.display = "block";
-    document.querySelectorAll("input, textarea").forEach(i => i.value = "");
+  // Scroll reveal
+  var revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.12 });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('in'); });
   }
-
-  // ── GLOW FOLLOW MOUSE (hero only) ──
-  const glow = document.querySelector(".hero-glow");
-  document.addEventListener("mousemove", e => {
-    if (e.clientY < window.innerHeight) {
-      glow.style.transform = `translate(${(e.clientX - window.innerWidth * 0.7) * 0.05}px, calc(-50% + ${(e.clientY - window.innerHeight * 0.5) * 0.05}px))`;
-    }
-  });
-
-  // ── PROJECT CARD CLICK ──
-  document.querySelectorAll(".project-card").forEach(card => {
-    card.addEventListener("click", e => {
-      if (e.target.closest("a") || e.target.closest(".project-links")) return;
-      const url = card.getAttribute("data-repo");
-      if (url) {
-        window.open(url, "_blank", "noopener");
-      }
-    });
-  });
-
-  document.querySelectorAll(".project-links a").forEach(link => {
-    link.addEventListener("click", e => {
-      e.stopPropagation();
-    });
-  });
 </script>
 
 </body>
