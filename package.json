@@ -1,0 +1,9 @@
+{
+  "name": "tuhin-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Tuhin Ghorui — portfolio site with a MongoDB-backed contact form API route.",
+  "dependencies": {
+    "mongodb": "^6.10.0"
+  }
+}
